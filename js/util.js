@@ -25,6 +25,15 @@ function createMat(ROWS, COLS) {
   return mat;
 }
 
+function freeze(elBtn) {
+  if (!gIsFrozen) {
+    elBtn.innerText = 'Freeze';
+  } else elBtn.innerText = 'Unfreeze';
+  gIsFrozen = !gIsFrozen;
+  if (!gAlienMoveInterval) gAlienMoveInterval = setInterval(() => shiftBoardRight(gBoard), 1000);
+  else clearInterval(gAlienMoveInterval);
+}
+
 // function getEmptyCell() {
 //   var positions = [];
 //   for (var i = 0; i < gBoard.length; i++) {

@@ -46,7 +46,7 @@ body {
 }
 
 .magic {
-  width: 100px;
+  width: 120px;
   height: 50px;
   margin: auto;
   animation: text-background-pan 5s linear infinite;
@@ -87,7 +87,7 @@ table {
   border-radius: 6px;
 }
 .bunker {
-  background-color: var(--color-selected);
+  /* background-color: var(--color-selected); */
   border: 2px solid rgba(255, 255, 255, 0.509);
   border-radius: 6px;
 }

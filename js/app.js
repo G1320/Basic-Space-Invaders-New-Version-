@@ -32,18 +32,7 @@ function init() {
   gBoard = createBoard();
   renderBoard(gBoard);
   setInitialGameScore();
-
   console.log(gBoard);
-  freeze(elBtn);
-}
-
-function freeze(elBtn) {
-  if (!gIsFrozen) {
-    elBtn.innerText = 'Freeze';
-  } else elBtn.innerText = 'Frozen';
-  gIsFrozen = !gIsFrozen;
-  if (!gAlienMoveInterval) gAlienMoveInterval = setInterval(() => shiftBoardRight(gBoard), 1000);
-  else clearInterval(gAlienMoveInterval);
 }
 
 // Create and returns the board with aliens on top, ground at bottom // use the functions: createCell, createHero, createAliens
@@ -77,6 +66,7 @@ function renderBoard(board) {
     for (var j = 0; j < board[0].length; j++) {
       var currCell = board[i][j];
       var cellClass = getClassName({ i, j });
+      var styleStr = '';
       switch (currCell.type) {
         case SKY:
           cellClass += ' sky';
@@ -85,10 +75,11 @@ function renderBoard(board) {
           cellClass += ' wall';
           break;
         case BUNKER:
-          cellClass += ' bunker';
+          cellClass += ` bunker`;
+          styleStr = `style="background-color:${getRandomColor()}"`;
           break;
       }
-      strHTML += `\t<td class="cell ${cellClass}" onclick="handleMove(${i}, ${j})">`;
+      strHTML += `\t<td ${styleStr} class="cell ${cellClass}" onclick="handleMove(${i}, ${j})">`;
       switch (currCell.gameObject) {
         case HERO:
           strHTML += HERO;
