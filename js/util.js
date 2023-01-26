@@ -25,20 +25,20 @@ function createMat(ROWS, COLS) {
   return mat;
 }
 
-function getEmptyCell() {
-  var positions = [];
-  for (var i = 0; i < gBoard.length; i++) {
-    for (var j = 0; j < gBoard[i].length; j++) {
-      var cell = gBoard[i][j];
-      if (cell.type !== WALL && cell.gameObject === null) {
-        if (i === 0 || j === 0 || i === gBoard.length - 1 || j === gBoard[0].length - 1) continue;
-        // if (gBoard[i][j].type === TARGET) continue;
-        positions.push({ i, j });
-      }
-    }
-  }
-  return positions[getRandomInt(0, positions.length)] || false;
-}
+// function getEmptyCell() {
+//   var positions = [];
+//   for (var i = 0; i < gBoard.length; i++) {
+//     for (var j = 0; j < gBoard[i].length; j++) {
+//       var cell = gBoard[i][j];
+//       if (cell.type !== WALL && cell.gameObject === null) {
+//         if (i === 0 || j === 0 || i === gBoard.length - 1 || j === gBoard[0].length - 1) continue;
+//         // if (gBoard[i][j].type === TARGET) continue;
+//         positions.push({ i, j });
+//       }
+//     }
+//   }
+//   return positions[getRandomInt(0, positions.length)] || false;
+// }
 
 function setInitialGameScore() {
   var elBoxCounter = document.querySelector('.score');

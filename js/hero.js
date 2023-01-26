@@ -13,21 +13,22 @@ function createHero(board) {
 }
 // Handle game keys
 function handleKey(event) {
-  var i = gGamerPos.i;
-  var j = gGamerPos.j;
+  var i = gHero.pos.i;
+  var j = gHero.pos.j;
 
   switch (event.key) {
     case 'ArrowLeft':
       j--;
-      console.log('Left');
       break;
     case 'ArrowRight':
-      console.log('Right');
       j++;
       break;
     case ' ':
-      gLazerPos = gGamerPos;
-      shoot();
+      if (!gHero.isShoot) {
+        clearInterval(gLaserInterval);
+        console.log(gBoard);
+        shoot();
+      }
       // moveHero(i, j);
       break;
   }
@@ -35,21 +36,46 @@ function handleKey(event) {
 }
 // Move the hero right (1) or left (-1)
 function moveHero(i, j) {
-  updateCell(gGamerPos, null);
-  gGamerPos = { i, j };
-  updateCell(gGamerPos, HERO);
+  updateCell(gHero.pos, null);
+  gHero.pos = { i, j };
+  updateCell(gHero.pos, HERO);
 }
 // renders a LASER at specific cell for short time and removes it function blinkLaser(pos) {}
 function blinkLaser(pos) {
+  if (!gHero.isShoot) return;
+  var nextCell = gBoard[gLazerPos.i - 1][gLazerPos.j];
+  if (gBoard[gLazerPos.i][gLazerPos.j].type === WALL || nextCell.type === WALL) {
+    console.log('Hit Wall');
+    updateCell(gLazerPos, null);
+    gLazerPos = { i: gLazerPos.i - 1, j: gLazerPos.j };
+    // updateCell(gLazerPos, null);
+    gHero.isShoot = false;
+
+    return;
+  }
+  if (nextCell.gameObject === ALIEN) {
+    handleAlienHit({ gLazerPos });
+    updateCell(gLazerPos, null);
+    gLazerPos = { i: gLazerPos.i - 1, j: gLazerPos.j };
+    updateCell(gLazerPos, null);
+    gHero.isShoot = false;
+    return;
+  }
+
   updateCell(gLazerPos, null);
   gLazerPos = { i: gLazerPos.i - 1, j: gLazerPos.j };
-  handleAlienHit(gLazerPos);
+  // if (gBoard[pos.i][pos.j].gameObject === ALIEN) {
+  //   clearInterval(gLaserInterval);
+  //   handleAlienHit(pos);
+  //   handleAlienHit(gLazerPos);
+  // }
   updateCell(gLazerPos, LASER);
 }
 
 // Sets an interval for shutting (blinking) the laser up towards aliens function shoot() {}
 function shoot() {
-  console.log(gBoard);
   gHero.isShoot = true;
+  gLazerPos = { i: gHero.pos.i - 1, j: gHero.pos.j };
+
   gLaserInterval = setInterval(blinkLaser, 500, gLazerPos);
 }

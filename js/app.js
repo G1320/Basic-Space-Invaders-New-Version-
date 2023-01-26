@@ -11,6 +11,7 @@ const SKY = 'sky';
 const WALL = 'wall';
 
 var gScore;
+var gLazerPos;
 
 // Matrix of cell objects. e.g.: {type: SKY, gameObject: ALIEN}
 var gBoard;
@@ -18,16 +19,15 @@ var gGame = {
   isOn: false,
   aliensCount: 0,
 };
-var gGamerPos;
-var gLazerPos;
+// var GHero.pos;
 // Called when game loads
 function init() {
   gScore = 0;
-  gGamerPos = { i: 12, j: 6 };
+  // GHero.pos = { i: 12, j: 6 };
   gBoard = createBoard();
   renderBoard(gBoard);
   setInitialGameScore();
-  gAlienMoveInterval = setInterval(shiftBoardRight, 1000, gBoard);
+  // gAlienMoveInterval = setInterval(shiftBoardRight, 1000, gBoard);
 }
 // Create and returns the board with aliens on top, ground at bottom // use the functions: createCell, createHero, createAliens
 function createBoard() {
@@ -87,27 +87,18 @@ function renderBoard(board) {
   elBoard.innerHTML = strHTML;
 }
 
-// Returns a new cell object. e.g.: {type: SKY, gameObject: ALIEN}
 function createHero(board) {
   board[gHero.pos.i][gHero.pos.j] = createCell(HERO);
 }
 
+// Returns a new cell object. e.g.: {type: SKY, gameObject: ALIEN}
 function createCell(gameObject = null) {
   return {
     type: SKY,
     gameObject: gameObject,
   };
 }
-// position such as: {i: 2, j: 7}
 function updateCell(pos, gameObject = null) {
-  // if (gBoard[pos.i][pos.j].gameObject === ALIEN) {
-  //   clearInterval(gLaserInterval);
-  //   handleAlienHit(pos);
-  //   gBoard[pos.i][pos.j].gameObject = null;
-  //   var elCell = getElCell(pos);
-  //   elCell.innerHTML = null || '';
-  //   return;
-  // }
   gBoard[pos.i][pos.j].gameObject = gameObject;
   var elCell = getElCell(pos);
   elCell.innerHTML = gameObject || '';
