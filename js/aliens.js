@@ -18,6 +18,11 @@ function addAliens(board) {
   }
 }
 function handleAlienHit(pos) {
+  updateCell(pos, null);
+  pos.i--;
+  updateCell(gLazerPos, null);
+  gHero.isShoot = false;
+  clearInterval(gLaserInterval);
   updateScore(10);
   // if (gBoard[pos.i][pos.j].gameObject === ALIEN) {
   console.log('Hit');

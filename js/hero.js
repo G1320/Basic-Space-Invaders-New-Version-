@@ -54,12 +54,7 @@ function blinkLaser(pos) {
     return;
   }
   if (nextCell.gameObject === ALIEN) {
-    handleAlienHit({ pos });
-    updateCell(pos, null);
-    pos.i--;
-    updateCell(gLazerPos, null);
-    gHero.isShoot = false;
-    clearInterval(gLaserInterval);
+    handleAlienHit(pos);
     return;
   }
   updateCell(pos, null);
