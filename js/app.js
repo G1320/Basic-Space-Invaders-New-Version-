@@ -112,5 +112,9 @@ function createCell(gameObject = null) {
 function updateCell(pos, gameObject = null) {
   gBoard[pos.i][pos.j].gameObject = gameObject;
   var elCell = getElCell(pos);
+  if (gBoard[pos.i][pos.j].type === BUNKER) {
+    elCell.classList.add('hit');
+    console.log('elCell: ', elCell);
+  }
   elCell.innerHTML = gameObject || '';
 }

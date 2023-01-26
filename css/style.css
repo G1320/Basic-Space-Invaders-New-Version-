@@ -23,6 +23,33 @@
   }
 }
 
+@keyframes td-rotateZ {
+  0% {
+    transform: rotateZ(0);
+  }
+  86% {
+    transform: rotateZ(0);
+  }
+
+  91% {
+    transform: rotateZ(-11deg);
+  }
+
+  97% {
+    transform: rotateZ(99deg);
+  }
+  98% {
+    transform: rotateZ(88deg);
+  }
+  99% {
+    transform: rotateZ(91deg);
+  }
+
+  100% {
+    transform: rotateZ(90deg);
+  }
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -66,6 +93,8 @@ body {
 
 table {
   margin: auto;
+  display: table;
+  table-layout: fixed;
   width: 90%;
   min-width: 500px;
   max-width: 700px;
@@ -77,6 +106,10 @@ table {
   text-align: center;
 }
 
+.hit {
+  background-color: var(--color-selected) !important;
+}
+
 .sky {
   background-color: rgb(67, 31, 139);
   border-radius: 6px;
@@ -85,11 +118,12 @@ table {
   background-color: rgba(211, 211, 211, 0.439);
   border: 2px solid rgba(255, 255, 255, 0.509);
   border-radius: 6px;
+  animation: td-rotateZ 13s ease-in-out infinite;
 }
 .bunker {
-  /* background-color: var(--color-selected); */
   border: 2px solid rgba(255, 255, 255, 0.509);
   border-radius: 6px;
+  animation: td-rotateZ 13s ease-in-out infinite;
 }
 
 .target {
@@ -98,14 +132,15 @@ table {
 }
 
 .cell {
-  width: 40px;
-  height: 40px;
+  display: table-cell;
+  width: 30px;
+  height: 30px;
   text-align: center;
 }
 
 .cell img {
   width: 25px;
-  height: auto;
+  height: 25px;
 }
 
 .cell * {
