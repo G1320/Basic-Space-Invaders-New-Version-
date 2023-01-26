@@ -24,18 +24,17 @@ function handleAlienHit(pos) {
   gHero.isShoot = false;
   clearInterval(gLaserInterval);
   updateScore(10);
-  console.log('Hit');
+  console.log('Hit Alien');
 }
 
-function shiftBoardRight(board, fromI, toI) {
-  var moveDiff = -1;
-
-  for (let i = 2; i < board.length - 3; i++) {
-    for (let j = 2; j < board[0].length - 3; j++) {
+function shiftBoardRight(board, fromI = 2, toI = 3) {
+  for (let i = fromI; i < board.length - toI; i++) {
+    for (let j = fromI; j < board[0].length - toI; j++) {
       if (board[i][j].type === WALL) continue;
       if (board[i][j].gameObject === ALIEN) {
         var temp = board[i][j].gameObject;
-        board[i][j].gameObject === null;
+        // board[i][j].gameObject === null;
+        updateCell({ i, j }, null);
         board[i][j - 1].gameObject = temp;
       }
     }

@@ -15,24 +15,22 @@ var gScore;
 var gLazerPos;
 var gAlienMoveInterval;
 var gIsFrozen;
+var gRandColor;
 
-// Matrix of cell objects. e.g.: {type: SKY, gameObject: ALIEN}
 var gBoard;
 var gGame = {
   isOn: false,
   aliensCount: 0,
 };
-// var GHero.pos;
 // Called when game loads
 function init() {
   gScore = 0;
   gIsFrozen = false;
-
-  // GHero.pos = { i: 12, j: 6 };
+  gRandColor = getRandomColor();
   gBoard = createBoard();
   renderBoard(gBoard);
   setInitialGameScore();
-  console.log(gBoard);
+  // console.log(gBoard);
 }
 
 // Create and returns the board with aliens on top, ground at bottom // use the functions: createCell, createHero, createAliens
@@ -41,6 +39,7 @@ function createBoard() {
   board = createMat(14, 14);
   for (var i = 0; i < board.length; i++) {
     for (var j = 0; j < board[i].length; j++) {
+      // Matrix of cell objects. e.g.: {type: SKY, gameObject: ALIEN}
       board[i][j] = { type: SKY, gameObject: null };
       if (i === 0 || i === board.length - 1 || j === 0 || j === board[i].length - 1)
         board[i][j] = { type: WALL, gameObject: null };
@@ -75,8 +74,8 @@ function renderBoard(board) {
           cellClass += ' wall';
           break;
         case BUNKER:
-          cellClass += ` bunker`;
-          styleStr = `style="background-color:${getRandomColor()}"`;
+          cellClass += ' bunker';
+          styleStr = `style="background-color:${gRandColor}"`;
           break;
       }
       strHTML += `\t<td ${styleStr} class="cell ${cellClass}" onclick="handleMove(${i}, ${j})">`;
@@ -87,19 +86,12 @@ function renderBoard(board) {
         case ALIEN:
           strHTML += ALIEN;
           break;
-        case LASER:
-          strHTML += LASER;
-          break;
       }
       strHTML += '\t</td>\n';
     }
     strHTML += '</tr>\n';
   }
   elBoard.innerHTML = strHTML;
-}
-
-function createHero(board) {
-  board[gHero.pos.i][gHero.pos.j] = createCell(HERO);
 }
 
 // Returns a new cell object. e.g.: {type: SKY, gameObject: ALIEN}
@@ -112,9 +104,6 @@ function createCell(gameObject = null) {
 function updateCell(pos, gameObject = null) {
   gBoard[pos.i][pos.j].gameObject = gameObject;
   var elCell = getElCell(pos);
-  if (gBoard[pos.i][pos.j].type === BUNKER) {
-    elCell.classList.add('hit');
-    console.log('elCell: ', elCell);
-  }
+  if (gBoard[pos.i][pos.j].type === BUNKER) elCell.classList.add('hit');
   elCell.innerHTML = gameObject || '';
 }

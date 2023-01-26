@@ -8,8 +8,7 @@ var gHero = {
 };
 // creates the hero and place it on board
 function createHero(board) {
-  board[12][6] = HERO;
-  return createCell(HERO);
+  board[gHero.pos.i][gHero.pos.j] = createCell(HERO);
 }
 // Handle game keys
 function handleKey(event) {
@@ -24,10 +23,9 @@ function handleKey(event) {
       j++;
       break;
     case ' ':
-      if (!gHero.isShoot) {
-        clearInterval(gLaserInterval);
-        shoot();
-      }
+      if (gHero.isShoot) break;
+      clearInterval(gLaserInterval);
+      shoot();
       break;
   }
   moveHero(i, j);
@@ -41,7 +39,7 @@ function moveHero(i, j) {
   updateCell(gHero.pos, HERO);
 }
 
-// renders a LASER at specific cell for short time and removes it function blinkLaser(pos) {}
+// renders a LASER at specific cell for short time and removes it
 function blinkLaser(pos) {
   if (!gHero.isShoot) return;
   var nextCell = gBoard[pos.i - 1][pos.j];
@@ -53,16 +51,14 @@ function blinkLaser(pos) {
     clearInterval(gLaserInterval);
     return;
   }
-  if (nextCell.gameObject === ALIEN) {
-    handleAlienHit(pos);
-    return;
-  }
+  if (nextCell.gameObject === ALIEN) return handleAlienHit(pos);
+
   updateCell(pos, null);
   pos.i--;
   updateCell(pos, LASER);
 }
 
-// Sets an interval for shutting (blinking) the laser up towards aliens function shoot() {}
+// Sets an interval for shutting (blinking) the laser up towards aliens
 function shoot() {
   gHero.isShoot = true;
   gLazerPos = { i: gHero.pos.i - 1, j: gHero.pos.j };
