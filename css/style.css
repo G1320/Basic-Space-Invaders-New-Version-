@@ -46,6 +46,8 @@ body {
 }
 
 .magic {
+  width: 100px;
+  height: 50px;
   margin: auto;
   animation: text-background-pan 5s linear infinite;
   background: linear-gradient(

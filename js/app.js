@@ -14,6 +14,7 @@ const BUNKER = 'bunker';
 var gScore;
 var gLazerPos;
 var gAlienMoveInterval;
+var gIsFrozen;
 
 // Matrix of cell objects. e.g.: {type: SKY, gameObject: ALIEN}
 var gBoard;
@@ -25,14 +26,26 @@ var gGame = {
 // Called when game loads
 function init() {
   gScore = 0;
+  gIsFrozen = false;
+
   // GHero.pos = { i: 12, j: 6 };
   gBoard = createBoard();
   renderBoard(gBoard);
   setInitialGameScore();
 
-  gAlienMoveInterval = setInterval(() => shiftBoardRight(gBoard), 1000);
   console.log(gBoard);
+  freeze(elBtn);
 }
+
+function freeze(elBtn) {
+  if (!gIsFrozen) {
+    elBtn.innerText = 'Freeze';
+  } else elBtn.innerText = 'Frozen';
+  gIsFrozen = !gIsFrozen;
+  if (!gAlienMoveInterval) gAlienMoveInterval = setInterval(() => shiftBoardRight(gBoard), 1000);
+  else clearInterval(gAlienMoveInterval);
+}
+
 // Create and returns the board with aliens on top, ground at bottom // use the functions: createCell, createHero, createAliens
 function createBoard() {
   var board = [];

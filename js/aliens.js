@@ -49,7 +49,24 @@ function shiftBoardRight(board, fromI, toI) {
   }
   renderBoard(board);
 }
-function shiftBoardLeft(board, fromI, toI) {}
+// function shiftBoardLeft(board, fromI, toI) {
+//   for (let i = 2; i < board.length - 2; i++) {
+//     for (let j = 2; j < board[0].length - 2; j++) {
+//       // if (board[i][j].type === WALL && board[i][j].gameObject === ALIEN) continue;
+//       // if (board[i][j].type === WALL) continue;
+//       if (board[i][j].gameObject === ALIEN) {
+//         var temp = board[i][j].gameObject;
+//         board[i][j].gameObject === null;
+//         board[i][j + 1].gameObject = temp;
+
+//         // updateCell({ i, j }, null);
+//         // board[i][j] = board[newPos.i][newPos.j];
+//         // updateCell(newPos, ALIEN);
+//       }
+//     }
+//   }
+//   renderBoard(board);
+// }
 function shiftBoardDown(board, fromI, toI) {}
 // runs the interval for moving aliens side to side and down // it re-renders the board every time
 // when the aliens are reaching the hero row - interval stops function moveAliens() {}
