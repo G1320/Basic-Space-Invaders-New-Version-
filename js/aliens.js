@@ -37,13 +37,17 @@ function shiftBoardRight(board, fromI, toI) {
       // if (board[i][j].type === WALL && board[i][j].gameObject === ALIEN) continue;
       // if (board[i][j].type === WALL) continue;
       if (board[i][j].gameObject === ALIEN) {
-        updateCell({ i, j }, null);
-        var newPos = { i, j: j - 1 };
-        board[i][j] = board[newPos.i][newPos.j];
-        updateCell(newPos, ALIEN);
+        var temp = board[i][j].gameObject;
+        board[i][j].gameObject === null;
+        board[i][j - 1].gameObject = temp;
+
+        // updateCell({ i, j }, null);
+        // board[i][j] = board[newPos.i][newPos.j];
+        // updateCell(newPos, ALIEN);
       }
     }
   }
+  renderBoard(board);
 }
 function shiftBoardLeft(board, fromI, toI) {}
 function shiftBoardDown(board, fromI, toI) {}

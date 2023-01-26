@@ -30,7 +30,7 @@ function init() {
   renderBoard(gBoard);
   setInitialGameScore();
 
-  // gAlienMoveInterval = setInterval(() => shiftBoardRight(gBoard), 1000);
+  gAlienMoveInterval = setInterval(() => shiftBoardRight(gBoard), 1000);
   console.log(gBoard);
 }
 // Create and returns the board with aliens on top, ground at bottom // use the functions: createCell, createHero, createAliens
