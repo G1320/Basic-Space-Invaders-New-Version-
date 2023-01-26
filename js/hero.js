@@ -44,13 +44,18 @@ function moveHero(i, j) {
 function blinkLaser(pos) {
   if (!gHero.isShoot) return;
   var nextCell = gBoard[gLazerPos.i - 1][gLazerPos.j];
-  if (gBoard[gLazerPos.i][gLazerPos.j].type === WALL || nextCell.type === WALL) {
+  var currCell = gBoard[gLazerPos.i][gLazerPos.j];
+  if (
+    currCell.type === WALL ||
+    nextCell.type === WALL ||
+    currCell.type === BUNKER ||
+    nextCell.type === BUNKER
+  ) {
     console.log('Hit Wall');
     updateCell(gLazerPos, null);
     gLazerPos = { i: gLazerPos.i - 1, j: gLazerPos.j };
     // updateCell(gLazerPos, null);
     gHero.isShoot = false;
-
     return;
   }
   if (nextCell.gameObject === ALIEN) {
@@ -61,14 +66,8 @@ function blinkLaser(pos) {
     gHero.isShoot = false;
     return;
   }
-
   updateCell(gLazerPos, null);
   gLazerPos = { i: gLazerPos.i - 1, j: gLazerPos.j };
-  // if (gBoard[pos.i][pos.j].gameObject === ALIEN) {
-  //   clearInterval(gLaserInterval);
-  //   handleAlienHit(pos);
-  //   handleAlienHit(gLazerPos);
-  // }
   updateCell(gLazerPos, LASER);
 }
 
@@ -77,5 +76,5 @@ function shoot() {
   gHero.isShoot = true;
   gLazerPos = { i: gHero.pos.i - 1, j: gHero.pos.j };
 
-  gLaserInterval = setInterval(blinkLaser, 500, gLazerPos);
+  gLaserInterval = setInterval(blinkLaser, LASER_SPEED, gLazerPos);
 }

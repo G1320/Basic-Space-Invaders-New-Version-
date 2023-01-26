@@ -84,6 +84,11 @@ table {
   border: 2px solid rgba(255, 255, 255, 0.509);
   border-radius: 6px;
 }
+.bunker {
+  background-color: var(--color-selected);
+  border: 2px solid rgba(255, 255, 255, 0.509);
+  border-radius: 6px;
+}
 
 .target {
   background-color: var(--color-selected);

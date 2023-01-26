@@ -9,6 +9,7 @@ const ALIEN = '👽';
 const LASER = '⤊';
 const SKY = 'sky';
 const WALL = 'wall';
+const BUNKER = 'bunker';
 
 var gScore;
 var gLazerPos;
@@ -40,10 +41,10 @@ function createBoard() {
         board[i][j] = { type: WALL, gameObject: null };
     }
   }
-  board[11][11] = { type: WALL, gameObject: null };
-  board[11][8] = { type: WALL, gameObject: null };
-  board[11][5] = { type: WALL, gameObject: null };
-  board[11][2] = { type: WALL, gameObject: null };
+  board[11][11] = { type: BUNKER, gameObject: null };
+  board[11][8] = { type: BUNKER, gameObject: null };
+  board[11][5] = { type: BUNKER, gameObject: null };
+  board[11][2] = { type: BUNKER, gameObject: null };
   addAliens(board);
   createHero(board);
   console.log('OG board: ', board);
@@ -66,6 +67,9 @@ function renderBoard(board) {
           break;
         case WALL:
           cellClass += ' wall';
+          break;
+        case BUNKER:
+          cellClass += ' bunker';
           break;
       }
       strHTML += `\t<td class="cell ${cellClass}" onclick="handleMove(${i}, ${j})">`;
