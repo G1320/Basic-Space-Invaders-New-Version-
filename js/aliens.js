@@ -33,8 +33,8 @@ function handleAlienHit(pos) {
 
 function freeze(elBtn) {
   if (!gIsFrozen) {
-    elBtn.innerText = 'Freeze';
-  } else elBtn.innerText = 'Unfreeze';
+    elBtn.innerText = 'FREEZE';
+  } else elBtn.innerText = 'UNFREEZE';
   gIsFrozen = !gIsFrozen;
   if (!gAlienMoveInterval) gAlienMoveInterval = setInterval(() => shiftBoardRight(gBoard), 1000);
   else clearInterval(gAlienMoveInterval);

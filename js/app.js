@@ -104,19 +104,6 @@ function createCell(gameObject = null) {
     gameObject: gameObject,
   };
 }
-function updateCell(pos, gameObject = null) {
-  gBoard[pos.i][pos.j].gameObject = gameObject;
-  var elCell = getElCell(pos);
-  elCell.innerHTML = gameObject || '';
-
-  if (gBoard[pos.i][pos.j].type === BUNKER) {
-    if (elCell.classList.contains('hit')) {
-      elCell.classList.remove('bunker');
-      gBoard[pos.i][pos.j].type = SKY;
-      return;
-    } else elCell.classList.add('hit');
-  }
-}
 
 function addCandy() {
   var location = addElement(CANDY);
@@ -131,4 +118,18 @@ function addElement(element) {
   updateCell(location, element);
 
   return location;
+}
+
+function updateCell(pos, gameObject = null) {
+  gBoard[pos.i][pos.j].gameObject = gameObject;
+  var elCell = getElCell(pos);
+  elCell.innerHTML = gameObject || '';
+
+  if (gBoard[pos.i][pos.j].type === BUNKER) {
+    if (elCell.classList.contains('hit')) {
+      elCell.classList.remove('bunker');
+      gBoard[pos.i][pos.j].type = SKY;
+      return;
+    } else elCell.classList.add('hit');
+  }
 }

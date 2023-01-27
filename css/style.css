@@ -1,4 +1,7 @@
 :root {
+  --ff-primary: 'Press Start 2P', cursive;
+  --ff-secondary: 'concert one', cursive;
+
   --color-dark-primary: rgb(39, 0, 94);
   --color-dark-secondary: rgba(40, 14, 87, 0.958);
   --color-light-primary: rgb(67, 31, 139);
@@ -54,10 +57,10 @@ body {
   padding: 0;
   margin: 0;
   display: flex column;
-  background-color: var(--color-dark-primary);
+  background-color: black;
   width: 100%;
   height: 100%;
-  font-family: Arial, Helvetica;
+  font-family: var(--ff-primary);
   letter-spacing: 0.02em;
   font-weight: 400;
   text-align: center;
@@ -77,6 +80,7 @@ body {
   height: 50px;
   margin: auto;
   cursor: pointer;
+  font-family: var(--ff-primary);
   animation: text-background-pan 5s linear infinite;
   background: linear-gradient(
     to right,
@@ -96,6 +100,7 @@ table {
   margin: auto;
   display: table;
   table-layout: fixed;
+  background-color: var(--color-dark-primary);
   width: 90%;
   min-width: 500px;
   max-width: 700px;
@@ -163,7 +168,7 @@ table {
 button {
   background-color: white;
   color: white;
-  font: bold;
-  font-size: 1.5rem;
+  /* font: bold; */
+  /* font-size: 1.5rem; */
   border-radius: 8px;
 }
