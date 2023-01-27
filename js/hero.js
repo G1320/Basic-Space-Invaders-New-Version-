@@ -23,14 +23,13 @@ function handleKey(event) {
       j++;
       break;
     case ' ':
-      if (gHero.isShoot) break;
+      if (gHero.isShoot) return;
       clearInterval(gLaserInterval);
       shoot();
       break;
   }
   moveHero(i, j);
 }
-
 // Move the hero right (1) or left (-1)
 function moveHero(i, j) {
   if (gBoard[i][j].type === WALL) return;
@@ -38,7 +37,6 @@ function moveHero(i, j) {
   gHero.pos = { i, j };
   updateCell(gHero.pos, HERO);
 }
-
 // renders a LASER at specific cell for short time and removes it
 function blinkLaser(pos) {
   if (!gHero.isShoot) return;

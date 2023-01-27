@@ -25,12 +25,12 @@ var gGame = {
 // Called when game loads
 function init() {
   gScore = 0;
+  gGame.aliensCount = 0;
   gIsFrozen = false;
   gRandColor = getRandomColor();
   gBoard = createBoard();
   renderBoard(gBoard);
   setInitialGameScore();
-  // console.log(gBoard);
 }
 
 // Create and returns the board with aliens on top, ground at bottom // use the functions: createCell, createHero, createAliens
@@ -51,7 +51,6 @@ function createBoard() {
   board[11][2] = { type: BUNKER, gameObject: null };
   addAliens(board);
   createHero(board);
-  console.log('OG board: ', board);
   return board;
 }
 

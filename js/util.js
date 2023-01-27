@@ -25,6 +25,18 @@ function createMat(ROWS, COLS) {
   return mat;
 }
 
+function scanNegs(cellI, cellJ, thing) {
+  // var thingCount = 0;
+  for (var i = cellI - 1; i <= cellI + 1; i++) {
+    if (i < 0 || i >= gBoard.length) continue;
+    for (var j = cellJ - 1; j <= cellJ + 1; j++) {
+      if (j < 0 || j >= gBoard[i].length) continue;
+      if (gBoard[i][j].type === thing) return true;
+    }
+  }
+  return false;
+}
+
 function freeze(elBtn) {
   if (!gIsFrozen) {
     elBtn.innerText = 'Freeze';
