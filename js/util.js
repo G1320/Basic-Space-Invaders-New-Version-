@@ -37,13 +37,16 @@ function scanNegs(cellI, cellJ, thing) {
   return false;
 }
 
-function freeze(elBtn) {
-  if (!gIsFrozen) {
-    elBtn.innerText = 'Freeze';
-  } else elBtn.innerText = 'Unfreeze';
-  gIsFrozen = !gIsFrozen;
-  if (!gAlienMoveInterval) gAlienMoveInterval = setInterval(() => shiftBoardRight(gBoard), 1000);
-  else clearInterval(gAlienMoveInterval);
+function getEmptyCellInRow(rowIdx) {
+  var positions = [];
+  for (var i = 0; i < gBoard[rowIdx].length - 1; i++) {
+    var cell = gBoard[rowIdx][i];
+    if (cell.type !== WALL && cell.gameObject === null) {
+      positions.push({ i: rowIdx, j: i });
+    }
+  }
+  console.log(positions);
+  return positions[getRandomInt(0, positions.length)] || false;
 }
 
 // function getEmptyCell() {

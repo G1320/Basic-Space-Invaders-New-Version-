@@ -7,6 +7,7 @@ const ALIENS_ROW_COUNT = 3;
 const HERO = '🦸‍♂️';
 const ALIEN = '👽';
 const LASER = '⤊';
+const CANDY = '🍩';
 const SKY = 'sky';
 const WALL = 'wall';
 const BUNKER = 'bunker';
@@ -16,6 +17,7 @@ var gLazerPos;
 var gAlienMoveInterval;
 var gIsFrozen;
 var gRandColor;
+var gGoldInterval;
 
 var gBoard;
 var gGame = {
@@ -27,6 +29,8 @@ function init() {
   gScore = 0;
   gGame.aliensCount = 0;
   gIsFrozen = false;
+  gGoldInterval = setInterval(() => addGold(), 10000);
+
   gRandColor = getRandomColor();
   gBoard = createBoard();
   renderBoard(gBoard);
@@ -105,4 +109,36 @@ function updateCell(pos, gameObject = null) {
   var elCell = getElCell(pos);
   if (gBoard[pos.i][pos.j].type === BUNKER) elCell.classList.add('hit');
   elCell.innerHTML = gameObject || '';
+}
+
+function addGold() {
+  // UPDATE THE MODEL
+  var location = addElement(CANDY);
+  // console.log('location: ', location);
+  // UPDATE THE DOM
+  // renderCell(location, CANDY);
+
+  setTimeout(removeElement, 5000, location);
+}
+
+function addElement(element) {
+  var location = getEmptyCellInRow(1);
+  // console.log('location: ', location);
+  if (!location) return;
+  // UPDATE THE MODEL
+  updateCell(location, element);
+  // gBoard[location.i][location.j].gameElement = element;
+
+  return location;
+}
+
+function removeElement(location) {
+  console.log('location: ', location);
+  // if (gBoard[location.i][location.j].gameElement === HERO) return;
+  // UPDATE THE MODEL
+  updateCell(location, nulls);
+
+  // gBoard[location.i][location.j].gameElement = null;
+  // UPDATE THE DOM
+  // renderCell(location, '');
 }

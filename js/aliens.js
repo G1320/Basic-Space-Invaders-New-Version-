@@ -31,35 +31,45 @@ function handleAlienHit(pos) {
   }
 }
 
+function freeze(elBtn) {
+  if (!gIsFrozen) {
+    elBtn.innerText = 'Freeze';
+  } else elBtn.innerText = 'Unfreeze';
+  gIsFrozen = !gIsFrozen;
+  if (!gAlienMoveInterval) gAlienMoveInterval = setInterval(() => shiftBoardRight(gBoard), 1000);
+  else clearInterval(gAlienMoveInterval);
+}
+
 function shiftBoardRight(board, fromI = 2, toI = 3) {
   for (let i = fromI; i < board.length - toI; i++) {
-    for (let j = fromI; j < board[0].length - toI; j++) {
+    for (let j = 0; j < board[0].length - toI; j++) {
       if (board[i][j].type === WALL) continue;
       if (board[i][j].gameObject === ALIEN) {
-        if (scanNegs(i, j - 1, WALL)) {
-          clearInterval(gAlienMoveInterval);
-          // gAlienMoveInterval = setInterval(() => shiftBoardLeft(gBoard), 1000);
-        }
         var temp = board[i][j].gameObject;
         // board[i][j].gameObject === null;
         updateCell({ i, j }, null);
         board[i][j - 1].gameObject = temp;
+        if (scanNegs(i, j - 1, WALL)) {
+          clearInterval(gAlienMoveInterval);
+          // gAlienMoveInterval = setInterval(() => shiftBoardLeft(board), 1000);
+        }
       }
     }
   }
+  console.log(board);
   renderBoard(board);
 }
 
 function shiftBoardLeft(board, fromI = 2, toI = 1) {
   console.log('Yo');
-  for (let i = fromI; i < board.length - toI; i++) {
-    for (let j = fromI; j < board[0].length - toI; j++) {
+  for (let i = 0; i < board.length - 3; i++) {
+    for (let j = 0; j < board[0].length - 2; j++) {
       if (board[i][j].type === WALL) continue;
       if (board[i][j].gameObject === ALIEN) {
-        if (scanNegs(i, j + 1, WALL)) {
-          clearInterval(gAlienMoveInterval);
-          return;
-        }
+        // if (scanNegs(i, j + 1, WALL)) {
+        //   clearInterval(gAlienMoveInterval);
+        //   return;
+        // }
         var temp = board[i][j].gameObject;
         // board[i][j].gameObject === null;
         updateCell({ i, j }, null);
@@ -67,6 +77,7 @@ function shiftBoardLeft(board, fromI = 2, toI = 1) {
       }
     }
   }
+  console.log(board);
   renderBoard(board);
 }
 
