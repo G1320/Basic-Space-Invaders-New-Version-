@@ -59,6 +59,7 @@ function paintNegs(cellI, cellJ) {
       }
     }
   }
+  updateCell(gLazerPos, null);
 }
 
 function paintCell(i, j, color) {
@@ -72,7 +73,7 @@ function paintCell(i, j, color) {
   }
 }
 
-function getEmptyCellInRow(rowIdx) {
+function getEmptyCellPosInRow(rowIdx) {
   var positions = [];
   for (var i = 0; i < gBoard[rowIdx].length - 1; i++) {
     var cell = gBoard[rowIdx][i];
@@ -104,19 +105,12 @@ function setInitialGameScore() {
 }
 
 function updateScore(amount) {
-  // reduce to single parameter
   gScore += amount;
 
   var elScore = document.querySelector('.score');
   elScore.innerHTML = gScore;
 }
 
-function clearAndPaintCell(i, j, color) {
-  var cellClass = getClassName({ i, j });
-  var elCell = document.querySelector(`.${cellClass}`);
-  elCell.innerText = '';
-  elCell.style.backgroundColor = color;
-}
 // Returns the class name for a specific cell
 function getClassName(location) {
   var cellClass = 'cell-' + location.i + '-' + location.j;

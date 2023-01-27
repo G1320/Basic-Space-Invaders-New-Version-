@@ -116,7 +116,7 @@ function addCandy() {
 }
 
 function addElement(element) {
-  var location = getEmptyCellInRow(1);
+  var location = getEmptyCellPosInRow(1);
   if (!location) return;
   // UPDATE THE MODEL & DOM
   updateCell(location, element);

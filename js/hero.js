@@ -52,7 +52,6 @@ function blinkLaser(pos) {
     gHero.isShoot = false;
     clearInterval(gLaserInterval);
     gLazerPos = null;
-
     return;
   }
   if (nextCell.gameObject === CANDY) return handleCandy(pos);

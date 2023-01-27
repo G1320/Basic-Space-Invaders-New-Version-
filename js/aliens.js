@@ -24,7 +24,9 @@ function handleAlienHit(pos) {
   gHero.isShoot = false;
   gGame.aliensCount--;
   clearInterval(gLaserInterval);
+  // if (!gIsNShot) {
   updateScore(10);
+  // }
   gLazerPos = null;
   console.log('Hit Alien');
   if (gGame.aliensCount === 0) {
