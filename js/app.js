@@ -29,7 +29,7 @@ function init() {
   gScore = 0;
   gGame.aliensCount = 0;
   gIsFrozen = false;
-  gGoldInterval = setInterval(() => addGold(), 10000);
+  gGoldInterval = setInterval(() => addCandy(), 10000);
 
   gRandColor = getRandomColor();
   gBoard = createBoard();
@@ -111,14 +111,9 @@ function updateCell(pos, gameObject = null) {
   elCell.innerHTML = gameObject || '';
 }
 
-function addGold() {
-  // UPDATE THE MODEL
+function addCandy() {
   var location = addElement(CANDY);
-  // console.log('location: ', location);
-  // UPDATE THE DOM
-  // renderCell(location, CANDY);
-
-  setTimeout(removeElement, 5000, location);
+  setTimeout(updateCell, 5000, location);
 }
 
 function addElement(element) {
@@ -130,15 +125,4 @@ function addElement(element) {
   // gBoard[location.i][location.j].gameElement = element;
 
   return location;
-}
-
-function removeElement(location) {
-  console.log('location: ', location);
-  // if (gBoard[location.i][location.j].gameElement === HERO) return;
-  // UPDATE THE MODEL
-  updateCell(location, nulls);
-
-  // gBoard[location.i][location.j].gameElement = null;
-  // UPDATE THE DOM
-  // renderCell(location, '');
 }
