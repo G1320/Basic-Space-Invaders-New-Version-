@@ -107,17 +107,15 @@ function createCell(gameObject = null) {
 function updateCell(pos, gameObject = null) {
   gBoard[pos.i][pos.j].gameObject = gameObject;
   var elCell = getElCell(pos);
-  if (elCell.classList.contains('hit')) {
-    // elCell.innerHTML = '';
-    elCell.classList.remove('hit');
-    elCell.classList.remove('bunker');
-    gBoard[pos.i][pos.j].type = SKY;
-    // elCell.classList.add('wall');
-    return;
-  }
-  if (gBoard[pos.i][pos.j].type === BUNKER && !elCell.classList.contains('hit'))
-    elCell.classList.add('hit');
   elCell.innerHTML = gameObject || '';
+
+  if (gBoard[pos.i][pos.j].type === BUNKER) {
+    if (elCell.classList.contains('hit')) {
+      elCell.classList.remove('bunker');
+      gBoard[pos.i][pos.j].type = SKY;
+      return;
+    } else elCell.classList.add('hit');
+  }
 }
 
 function addCandy() {
