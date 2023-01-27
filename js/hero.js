@@ -27,6 +27,11 @@ function handleKey(event) {
       clearInterval(gLaserInterval);
       shoot();
       break;
+    case 'n':
+      console.log(gLazerPos);
+      paintNegs(gLazerPos.i, gLazerPos.j);
+
+      break;
   }
   moveHero(i, j);
 }
