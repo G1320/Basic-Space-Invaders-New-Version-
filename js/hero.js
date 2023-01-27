@@ -28,9 +28,8 @@ function handleKey(event) {
       shoot();
       break;
     case 'n':
-      console.log(gLazerPos);
+      console.log('gLazerPos: ', gLazerPos);
       paintNegs(gLazerPos.i, gLazerPos.j);
-
       break;
   }
   moveHero(i, j);
@@ -52,6 +51,8 @@ function blinkLaser(pos) {
     updateCell(pos, null);
     gHero.isShoot = false;
     clearInterval(gLaserInterval);
+    gLazerPos = null;
+
     return;
   }
   if (nextCell.gameObject === CANDY) return handleCandy(pos);
@@ -70,6 +71,8 @@ function handleCandy(pos) {
   gGame.aliensCount--;
   clearInterval(gLaserInterval);
   updateScore(50);
+  gLazerPos = null;
+
   console.log('Hit Candy');
 }
 

@@ -25,19 +25,11 @@ function handleAlienHit(pos) {
   gGame.aliensCount--;
   clearInterval(gLaserInterval);
   updateScore(10);
+  gLazerPos = null;
   console.log('Hit Alien');
   if (gGame.aliensCount === 0) {
     console.log('You win!');
   }
-}
-
-function freeze(elBtn) {
-  if (!gIsFrozen) {
-    elBtn.innerText = 'FREEZE';
-  } else elBtn.innerText = 'UNFREEZE';
-  gIsFrozen = !gIsFrozen;
-  if (!gAlienMoveInterval) gAlienMoveInterval = setInterval(() => shiftBoardRight(gBoard), 1000);
-  else clearInterval(gAlienMoveInterval);
 }
 
 function shiftBoardRight(board, fromI = 2, toI = 3) {

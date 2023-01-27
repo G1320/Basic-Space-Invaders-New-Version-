@@ -54,7 +54,9 @@ function paintNegs(cellI, cellJ) {
     if (i < 0 || i >= gBoard.length) continue;
     for (var j = cellJ - 1; j <= cellJ + 1; j++) {
       if (j < 0 || j >= gBoard[i].length) continue;
-      if (gBoard[i][j].type !== WALL) paintCell(i, j, 'var(--color-selected)');
+      if (gBoard[i][j].type !== WALL) {
+        paintCell(i, j, 'var(--color-selected)');
+      }
     }
   }
 }
@@ -62,8 +64,12 @@ function paintNegs(cellI, cellJ) {
 function paintCell(i, j, color) {
   var cellClass = getClassName({ i, j });
   var elCell = document.querySelector(`.${cellClass}`);
-  elCell.innerText = '';
   elCell.style.backgroundColor = color;
+  if (gBoard[i][j].gameObject == ALIEN) {
+    gGame.aliensCount--;
+    updateCell({ i, j });
+    updateScore(10);
+  }
 }
 
 function getEmptyCellInRow(rowIdx) {
@@ -74,7 +80,6 @@ function getEmptyCellInRow(rowIdx) {
       positions.push({ i: rowIdx, j: i });
     }
   }
-  console.log(positions);
   return positions[getRandomInt(0, positions.length)] || false;
 }
 

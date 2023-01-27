@@ -10,6 +10,7 @@ const LASER = '⤊';
 const CANDY = '🍩';
 const SKY = 'sky';
 const WALL = 'wall';
+const HIT_BUNKER = 'hit';
 const BUNKER = 'bunker';
 
 var gScore;
@@ -80,6 +81,9 @@ function renderBoard(board) {
           cellClass += ' bunker';
           styleStr = `style="background-color:${gRandColor}"`;
           break;
+        case HIT_BUNKER:
+          cellClass += ' hit';
+          break;
       }
       strHTML += `\t<td ${styleStr} class="cell ${cellClass}" onclick="handleMove(${i}, ${j})">`;
       switch (currCell.gameObject) {
@@ -129,8 +133,19 @@ function updateCell(pos, gameObject = null) {
     if (elCell.classList.contains('hit')) {
       elCell.classList.remove('bunker');
       elCell.classList.add('animation-spin');
-      gBoard[pos.i][pos.j].type = SKY;
+      gBoard[pos.i][pos.j].type = HIT_BUNKER;
       return;
     } else elCell.classList.add('hit');
   }
+}
+
+function freeze(elBtn) {
+  if (!gIsFrozen) {
+    elBtn.innerText = 'FREEZE';
+  } else elBtn.innerText = 'UNFREEZE';
+  gIsFrozen = !gIsFrozen;
+  console.log('gAlienMoveInterval: ', gAlienMoveInterval);
+  !gAlienMoveInterval
+    ? (gAlienMoveInterval = setInterval(() => shiftBoardRight(gBoard), 1000))
+    : clearInterval(gAlienMoveInterval);
 }
