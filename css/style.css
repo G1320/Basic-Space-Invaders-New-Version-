@@ -12,6 +12,9 @@
   --shadow-secondary: 8px 4px 4px var(--color-dark-secondary), 12px 4px 4px var(--color-dark-secondary),
     16px 4px 4px var(--color-dark-secondary);
 
+  --shadow-glow-s: -1px 1px 2px #ffc, 1px -1px 2px #fff;
+  --shadow-glow-m: -1px 1px 8px #ffc, 1px -1px 8px #fff;
+
   --purple: rgb(123, 31, 162);
   --violet: rgb(103, 58, 183);
   --pink: rgb(244, 143, 177);
@@ -53,6 +56,16 @@
   }
 }
 
+@keyframes td-selected-rotateY {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+    text-shadow: var(--shadow-glow-m);
+  }
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -64,15 +77,6 @@ body {
   letter-spacing: 0.02em;
   font-weight: 400;
   text-align: center;
-}
-
-.header {
-  width: 100%;
-  display: flex row;
-  color: rgb(255, 255, 255);
-  font-size: 1em;
-  border-radius: 8px;
-  box-shadow: 6px px 6px;
 }
 
 .magic {
@@ -94,6 +98,23 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   white-space: nowrap;
+}
+
+.animation-spin {
+  transform-style: preserve-3d;
+  animation: td-selected-rotateY 2s infinite ease-in-out alternate;
+  animation-delay: 0.8s;
+  animation-play-state: running;
+  animation-iteration-count: 2;
+}
+
+.header {
+  width: 100%;
+  display: flex row;
+  color: rgb(255, 255, 255);
+  font-size: 1em;
+  border-radius: 8px;
+  box-shadow: 6px px 6px;
 }
 
 table {

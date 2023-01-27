@@ -128,6 +128,7 @@ function updateCell(pos, gameObject = null) {
   if (gBoard[pos.i][pos.j].type === BUNKER) {
     if (elCell.classList.contains('hit')) {
       elCell.classList.remove('bunker');
+      elCell.classList.add('animation-spin');
       gBoard[pos.i][pos.j].type = SKY;
       return;
     } else elCell.classList.add('hit');
