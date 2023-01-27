@@ -49,41 +49,6 @@ function scanNegs(cellI, cellJ, thing) {
 //   }
 // }
 
-function paintNegs(cellI, cellJ) {
-  for (var i = cellI - 1; i <= cellI + 1; i++) {
-    if (i < 0 || i >= gBoard.length) continue;
-    for (var j = cellJ - 1; j <= cellJ + 1; j++) {
-      if (j < 0 || j >= gBoard[i].length) continue;
-      if (gBoard[i][j].type !== WALL) {
-        paintCell(i, j, 'var(--color-selected)');
-      }
-    }
-  }
-  updateCell(gLazerPos, null);
-}
-
-function paintCell(i, j, color) {
-  var cellClass = getClassName({ i, j });
-  var elCell = document.querySelector(`.${cellClass}`);
-  elCell.style.backgroundColor = color;
-  if (gBoard[i][j].gameObject == ALIEN) {
-    gGame.aliensCount--;
-    updateCell({ i, j });
-    updateScore(10);
-  }
-}
-
-function getEmptyCellPosInRow(rowIdx) {
-  var positions = [];
-  for (var i = 0; i < gBoard[rowIdx].length - 1; i++) {
-    var cell = gBoard[rowIdx][i];
-    if (cell.type !== WALL && cell.gameObject === null) {
-      positions.push({ i: rowIdx, j: i });
-    }
-  }
-  return positions[getRandomInt(0, positions.length)] || false;
-}
-
 // function getEmptyCell() {
 //   var positions = [];
 //   for (var i = 0; i < gBoard.length; i++) {

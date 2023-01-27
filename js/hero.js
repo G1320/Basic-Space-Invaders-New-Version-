@@ -29,7 +29,7 @@ function handleKey(event) {
       break;
     case 'n':
       console.log('gLazerPos: ', gLazerPos);
-      paintNegs(gLazerPos.i, gLazerPos.j);
+      BlowUpNegs(gLazerPos.i, gLazerPos.j);
       break;
   }
   moveHero(i, j);
@@ -81,4 +81,29 @@ function shoot() {
   gLazerPos = { i: gHero.pos.i - 1, j: gHero.pos.j };
 
   gLaserInterval = setInterval(blinkLaser, LASER_SPEED, gLazerPos);
+}
+
+function BlowUpNegs(cellI, cellJ) {
+  gHero.isShoot = false;
+  for (var i = cellI - 1; i <= cellI + 1; i++) {
+    if (i < 0 || i >= gBoard.length) continue;
+    for (var j = cellJ - 1; j <= cellJ + 1; j++) {
+      if (j < 0 || j >= gBoard[i].length) continue;
+      if (gBoard[i][j].type !== WALL) {
+        BlowUpCell(i, j, 'var(--color-selected)');
+      }
+    }
+  }
+  updateCell(gLazerPos, null);
+}
+
+function BlowUpCell(i, j, color) {
+  var cellClass = getClassName({ i, j });
+  var elCell = document.querySelector(`.${cellClass}`);
+  elCell.style.backgroundColor = color;
+  if (gBoard[i][j].gameObject == ALIEN) {
+    gGame.aliensCount--;
+    updateCell({ i, j });
+    updateScore(10);
+  }
 }

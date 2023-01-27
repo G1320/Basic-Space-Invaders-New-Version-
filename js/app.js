@@ -124,6 +124,17 @@ function addElement(element) {
   return location;
 }
 
+function getEmptyCellPosInRow(rowIdx) {
+  var positions = [];
+  for (var i = 0; i < gBoard[rowIdx].length - 1; i++) {
+    var cell = gBoard[rowIdx][i];
+    if (cell.type !== WALL && cell.gameObject === null) {
+      positions.push({ i: rowIdx, j: i });
+    }
+  }
+  return positions[getRandomInt(0, positions.length)] || false;
+}
+
 function updateCell(pos, gameObject = null) {
   gBoard[pos.i][pos.j].gameObject = gameObject;
   var elCell = getElCell(pos);
