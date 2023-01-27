@@ -28,7 +28,6 @@ function handleKey(event) {
       shoot();
       break;
     case 'n':
-      console.log('gLazerPos: ', gLazerPos);
       BlowUpNegs(gLazerPos.i, gLazerPos.j);
       break;
   }
@@ -66,12 +65,12 @@ function handleCandy(pos) {
   updateCell(pos, null);
   pos.i--;
   updateCell(pos, null);
+
   gHero.isShoot = false;
   gGame.aliensCount--;
   clearInterval(gLaserInterval);
   updateScore(50);
   gLazerPos = null;
-
   console.log('Hit Candy');
 }
 
@@ -98,9 +97,7 @@ function BlowUpNegs(cellI, cellJ) {
 }
 
 function BlowUpCell(i, j, color) {
-  var cellClass = getClassName({ i, j });
-  var elCell = document.querySelector(`.${cellClass}`);
-  elCell.style.backgroundColor = color;
+  document.querySelector(`.${getClassName({ i, j })}`).style.backgroundColor = color;
   if (gBoard[i][j].gameObject == ALIEN) {
     gGame.aliensCount--;
     updateCell({ i, j });
