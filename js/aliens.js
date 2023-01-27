@@ -56,12 +56,12 @@ function shiftBoardRight(board, fromI = 2, toI = 3) {
       }
     }
   }
-  console.log(board);
+  // console.log(board);
   renderBoard(board);
 }
 
 function shiftBoardLeft(board, fromI = 2, toI = 1) {
-  console.log('Yo');
+  // console.log('Yo');
   for (let i = 0; i < board.length - 3; i++) {
     for (let j = 0; j < board[0].length - 2; j++) {
       if (board[i][j].type === WALL) continue;
@@ -77,7 +77,7 @@ function shiftBoardLeft(board, fromI = 2, toI = 1) {
       }
     }
   }
-  console.log(board);
+  // console.log(board);
   renderBoard(board);
 }
 
