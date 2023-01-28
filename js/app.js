@@ -32,6 +32,8 @@ var gGame = {
 function init() {
   clearInterval(gCandyInterval);
   clearInterval(gAlienShootInterval);
+  clearInterval(gAlienMoveInterval);
+
   gScore = 0;
   gGame.aliensCount = 0;
   gIsFrozen = false;
