@@ -68,7 +68,7 @@ function openModal(msg) {
   const elModal = document.querySelector('.modal');
   const elSpan = elModal.querySelector('.msg');
   elSpan.innerText = msg;
-  elModal.style.display = 'block';
+  // elModal.style.display = 'block';
 }
 
 function closeModal() {
