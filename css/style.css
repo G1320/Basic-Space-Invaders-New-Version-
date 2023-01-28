@@ -77,6 +77,15 @@
   }
 }
 
+@keyframes animation-glow {
+  from {
+    text-shadow: none;
+  }
+  to {
+    text-shadow: var(--shadow-glow-m);
+  }
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -186,6 +195,7 @@ table {
   border: var(--wall-border);
   animation: td-rotateZ 13s ease-in-out infinite;
 }
+
 .bunker {
   border: var(--wall-border);
   animation: td-rotateZ 13s ease-in-out infinite;

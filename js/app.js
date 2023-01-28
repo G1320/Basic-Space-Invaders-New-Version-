@@ -127,8 +127,13 @@ function addElement(element) {
   var location = getEmptyCellPosInRow(1);
   if (!location) return;
   // UPDATE THE MODEL & DOM
-  updateCell(location, element);
+
+  updateCell(location, getElementHTMLWithGlow(element));
   return location;
+}
+
+function getElementHTMLWithGlow(element) {
+  return `<div style="animation: animation-glow 0.5s ease-in-out infinite alternate; margin: auto; class="" ">${element}</div>`;
 }
 
 function getEmptyCellPosInRow(rowIdx) {
