@@ -54,18 +54,18 @@ function shiftBoardRight(board, fromI = 2, toI = 3) {
 
 function shiftBoardLeft(board, fromI = 2, toI = 1) {
   // console.log('Yo');
-  for (let i = 0; i < board.length - 3; i++) {
+  for (let i = 2; i < board.length - 3; i++) {
     for (let j = 0; j < board[0].length - 2; j++) {
       if (board[i][j].type === WALL) continue;
       if (board[i][j].gameObject === ALIEN) {
-        if (scanNegs(i, j + 1, WALL)) {
-          clearInterval(gAlienMoveInterval);
-          return;
-        }
         var temp = board[i][j].gameObject;
         // board[i][j].gameObject === null;
         updateCell({ i, j }, null);
         board[i][j + 1].gameObject = temp;
+        if (scanNegs(i, j + 1, WALL)) {
+          clearInterval(gAlienMoveInterval);
+          return;
+        }
       }
     }
   }
