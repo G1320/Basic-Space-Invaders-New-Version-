@@ -50,8 +50,8 @@ function blinkLaser(pos) {
   if (nextCell.gameObject === CANDY) return handleCandy(pos);
   if (nextCell.gameObject === ALIEN) return handleAlienHit(pos);
   if (nextCell.type === WALL || currCell.type === BUNKER) {
-    console.log(`nextCell Hit ${nextCell.type}`);
-    console.log(`CurrCell Hit ${currCell.type}`);
+    // console.log(`nextCell Hit ${nextCell.type}`);
+    // console.log(`CurrCell Hit ${currCell.type}`);
     updateCell(pos, null);
     gHero.isShoot = false;
     clearInterval(gLaserInterval);
@@ -70,9 +70,9 @@ function handleCandy(pos) {
   updateCell(pos, null);
 
   gHero.isShoot = false;
+  gLazerPos = null;
   clearInterval(gLaserInterval);
   updateScore(50);
-  gLazerPos = null;
   console.log('Hit Candy');
 }
 // Sets an interval for shutting (blinking) the laser up towards aliens

@@ -6,18 +6,20 @@
   --br-m: 8px;
   --br-l: 10px;
 
+  --cell-size: 30px;
+  --cell-content-size: 20px;
+
+  --wall-bg-color: rgba(211, 211, 211, 0.439);
+  --wall-border: 2px solid rgba(255, 255, 255, 0.509);
+
   --color-dark-primary: rgb(39, 0, 94);
   --color-dark-secondary: rgba(40, 14, 87, 0.958);
   --color-light-primary: rgb(67, 31, 139);
   --color-light-secondary: rgba(67, 31, 139, 0.58);
   --color-selected: rgb(224, 117, 117);
-  --shadow-primary: 8px 1.5px 1.5px var(--color-light-primary),
-    12px 1.5px 1.5px var(--color-light-primary), 16px 1.5px 1.5px var(--color-light-primary);
-  --shadow-secondary: 8px 4px 4px var(--color-dark-secondary), 12px 4px 4px var(--color-dark-secondary),
-    16px 4px 4px var(--color-dark-secondary);
 
   --shadow-glow-s: -1px 1px 2px #ffc, 1px -1px 2px #fff;
-  --shadow-glow-m: -1px 1px 8px #ffc, 1px -1px 8px #fff;
+  --shadow-glow-m: -1px 1px 5px #ffc, 1px -1px 5px #fff;
 
   --purple: rgb(123, 31, 162);
   --violet: rgb(103, 58, 183);
@@ -63,7 +65,6 @@
   }
   to {
     transform: rotateY(360deg);
-    text-shadow: var(--shadow-glow-m);
   }
 }
 
@@ -152,7 +153,7 @@ body {
   color: rgb(255, 255, 255);
   font-size: 0.8em;
   letter-spacing: 0.2em;
-  margin-top: 50px;
+  margin-top: 40px;
 }
 
 .header * {
@@ -181,26 +182,26 @@ table {
 }
 
 .wall {
-  background-color: rgba(211, 211, 211, 0.439);
-  border: 2px solid rgba(255, 255, 255, 0.509);
+  background-color: var(--wall-bg-color);
+  border: var(--wall-border);
   animation: td-rotateZ 13s ease-in-out infinite;
 }
 .bunker {
-  border: 2px solid rgba(255, 255, 255, 0.509);
+  border: var(--wall-border);
   animation: td-rotateZ 13s ease-in-out infinite;
 }
 
 .cell {
   display: table-cell;
-  width: 30px;
-  height: 30px;
+  width: var(--cell-size);
+  height: var(--cell-size);
   border-radius: var(--br-s);
+  /* text-shadow: var(--shadow-glow-m); */
 }
 
 .cell * {
-  min-width: 20px;
-  max-width: 20px;
-  max-height: 20px;
+  max-width: var(--cell-content-size);
+  max-height: var(--cell-content-size);
 }
 
 .score {
