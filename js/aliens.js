@@ -79,9 +79,8 @@ function alienShoot() {
 }
 
 function blinkAlienLaser(pos) {
-  var nextCell = gBoard[pos.i + 1][pos.j];
   var currCell = gBoard[pos.i][pos.j];
-  if (nextCell.type === WALL || currCell.type === BUNKER) {
+  if (currCell.type === WALL || currCell.type === BUNKER) {
     updateCell(pos, null);
     clearInterval(gAlienLaserInterval);
     return;
