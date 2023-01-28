@@ -22,6 +22,7 @@ var gRandColor;
 var gCandyInterval;
 var gAlienLaserInterval;
 var gAlienShootInterval;
+var isModalOpen = true;
 
 var gBoard;
 var gGame = {
@@ -45,7 +46,10 @@ function init() {
   renderBoard(gBoard);
   setInitialGameScore();
   var msg = 'Welcome!';
-  openModal(msg);
+  if (isModalOpen) {
+    openModal(msg);
+    isModalOpen = false;
+  }
 }
 
 // Create and returns the board with aliens on top, ground at bottom // use the functions: createCell, createHero, createAliens
