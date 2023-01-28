@@ -74,8 +74,7 @@ function shiftBoardLeft(board, fromI = 2, toI = 1) {
 }
 
 function alienShoot() {
-  var pos = getEmptyCellPosInRow(4);
-
+  var pos = getEmptyCellPosInRow(5);
   gAlienLaserInterval = setInterval(blinkAlienLaser, LASER_SPEED, pos);
 }
 
@@ -83,15 +82,13 @@ function blinkAlienLaser(pos) {
   var nextCell = gBoard[pos.i + 1][pos.j];
   var currCell = gBoard[pos.i][pos.j];
   if (nextCell.type === WALL || currCell.type === BUNKER) {
-    console.log(`nextCell Hit ${nextCell.type}`);
-    console.log(`CurrCell Hit ${currCell.type}`);
     updateCell(pos, null);
     clearInterval(gAlienLaserInterval);
     return;
   }
   updateCell(pos, null);
   pos.i++;
-  updateCell(pos, LASER);
+  updateCell(pos, INVERTED_LASER);
 }
 
 function shiftBoardDown(board, fromI, toI) {}

@@ -7,6 +7,7 @@ const ALIENS_ROW_COUNT = 3;
 const HERO = '🦸‍♂️';
 const ALIEN = '👽';
 const LASER = '⤊';
+const INVERTED_LASER = '🔰';
 const CANDY = '🍩';
 const SKY = 'sky';
 const WALL = 'wall';
@@ -134,7 +135,7 @@ function getEmptyCellPosInRow(rowIdx) {
       positions.push({ i: rowIdx, j: i });
     }
   }
-  return positions[getRandomInt(0, positions.length)] || null;
+  return positions[getRandomInt(0, positions.length)] || false;
 }
 
 function scanNegs(cellI, cellJ, thing) {
