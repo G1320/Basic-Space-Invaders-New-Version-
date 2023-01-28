@@ -131,7 +131,7 @@ function getEmptyCellPosInRow(rowIdx) {
       positions.push({ i: rowIdx, j: i });
     }
   }
-  return positions[getRandomInt(0, positions.length)] || false;
+  return positions[getRandomInt(0, positions.length)] || null;
 }
 
 function scanNegs(cellI, cellJ, thing) {
@@ -163,10 +163,10 @@ function updateCell(pos, gameObject = null) {
 function freeze(elBtn) {
   if (!gIsFrozen) {
     elBtn.innerText = 'FREEZE';
-  } else elBtn.innerText = 'UNFREEZE';
+    gAlienMoveInterval = setInterval(() => shiftBoardRight(gBoard), 1000);
+  } else {
+    elBtn.innerText = 'UNFREEZE';
+    clearInterval(gAlienMoveInterval);
+  }
   gIsFrozen = !gIsFrozen;
-  console.log('gAlienMoveInterval: ', gAlienMoveInterval);
-  !gAlienMoveInterval
-    ? (gAlienMoveInterval = setInterval(() => shiftBoardRight(gBoard), 1000))
-    : clearInterval(gAlienMoveInterval);
 }

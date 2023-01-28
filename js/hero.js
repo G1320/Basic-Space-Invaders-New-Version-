@@ -47,7 +47,9 @@ function blinkLaser(pos) {
   if (!gHero.isShoot) return;
   var nextCell = gBoard[pos.i - 1][pos.j];
   var currCell = gBoard[pos.i][pos.j];
-  if (nextCell.type === WALL || currCell.type === BUNKER || nextCell.type === BUNKER) {
+  if (nextCell.gameObject === CANDY) return handleCandy(pos);
+  if (nextCell.gameObject === ALIEN) return handleAlienHit(pos);
+  if (nextCell.type === WALL || currCell.type === BUNKER) {
     console.log(`nextCell Hit ${nextCell.type}`);
     console.log(`CurrCell Hit ${currCell.type}`);
     updateCell(pos, null);
@@ -56,8 +58,6 @@ function blinkLaser(pos) {
     gLazerPos = null;
     return;
   }
-  if (nextCell.gameObject === CANDY) return handleCandy(pos);
-  if (nextCell.gameObject === ALIEN) return handleAlienHit(pos);
 
   updateCell(pos, null);
   pos.i--;
