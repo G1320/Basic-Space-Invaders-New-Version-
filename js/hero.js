@@ -31,9 +31,11 @@ function handleKey(event) {
       shoot();
       return;
     case 'n':
-      console.log('gLazerPos: ', gLazerPos);
+      if (!gLazerPos) return;
       BlowUpNegs(gLazerPos.i, gLazerPos.j);
       gLazerPos = null;
+      return;
+    default:
       return;
   }
   moveHero(i, j);
@@ -46,6 +48,7 @@ function moveHero(i, j) {
   updateCell(gHero.pos, getHeroHTML(gHero.deg));
   gBoard[i][j].gameObject = HERO;
   setTimeout(() => updateCell(gHero.pos, getHeroHTML(0)), 200);
+  gBoard[i][j].gameObject = HERO;
 }
 // renders a LASER at specific cell for short time and removes it
 function blinkLaser(pos) {
@@ -63,7 +66,6 @@ function blinkLaser(pos) {
     gLazerPos = null;
     return;
   }
-
   updateCell(pos);
   pos.i--;
   updateCell(pos, LASER);
@@ -118,5 +120,5 @@ function BlowUpCell(i, j, color) {
 }
 
 function getHeroHTML(deg) {
-  return `<div style=" animation: animation-glow 2s ease-in-out infinite alternate; animation-delay: 0.6s; animation-iteration-count: 2; transform: rotate(${deg}deg); margin: auto; class="" ">${HERO}</div>`;
+  return `<div style=" animation: animation-glow 1.8s ease-in infinite alternate; animation-delay: 0.6s; animation-iteration-count: 2; transform: rotate(${deg}deg); margin: auto; class="" ">${HERO}</div>`;
 }

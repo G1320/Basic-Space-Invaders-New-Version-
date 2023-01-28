@@ -154,7 +154,7 @@ body {
   background-size: 1000px 1000px;
   position: absolute;
   top: 120px;
-  animation: move-background 70s linear infinite;
+  animation: move-background 70s linear infinite alternate;
 }
 
 .header {

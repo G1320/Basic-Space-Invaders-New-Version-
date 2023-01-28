@@ -161,6 +161,9 @@ function scanNegs(cellI, cellJ, thing) {
 }
 
 function updateCell(pos, gameObject = null) {
+  if (gGame.aliensCount === 0) {
+    console.log('You win!');
+  }
   gBoard[pos.i][pos.j].gameObject = gameObject;
   var elCell = getElCell(pos);
   elCell.innerHTML = gameObject || '';

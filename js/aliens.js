@@ -27,9 +27,6 @@ function handleAlienHit(pos) {
   updateScore(10);
   gLazerPos = null;
   console.log('Hit Alien');
-  if (gGame.aliensCount === 0) {
-    console.log('You win!');
-  }
 }
 
 function shiftBoardRight(board, fromI = 2, toI = 3) {
@@ -52,7 +49,6 @@ function shiftBoardRight(board, fromI = 2, toI = 3) {
 }
 
 function shiftBoardLeft(board, fromI = 2, toI = 1) {
-  // console.log('Yo');
   for (let i = 2; i < board.length - 3; i++) {
     for (let j = 0; j < board[0].length - 2; j++) {
       if (board[i][j].type === WALL) continue;
