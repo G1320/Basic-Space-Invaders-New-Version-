@@ -19,6 +19,8 @@ var gAlienMoveInterval;
 var gIsFrozen;
 var gRandColor;
 var gCandyInterval;
+var gAlienLaserInterval;
+var gAlienShootInterval;
 
 var gBoard;
 var gGame = {
@@ -31,6 +33,7 @@ function init() {
   gGame.aliensCount = 0;
   gIsFrozen = false;
   gCandyInterval = setInterval(addCandy, 10000);
+  gAlienShootInterval = setInterval(alienShoot, 5000);
   gRandColor = getRandomColor();
 
   gBoard = createBoard();

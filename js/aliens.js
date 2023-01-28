@@ -73,6 +73,33 @@ function shiftBoardLeft(board, fromI = 2, toI = 1) {
   renderBoard(board);
 }
 
+function alienShoot() {
+  var pos = getEmptyCellPosInRow(4);
+
+  gAlienLaserInterval = setInterval(blinkAlienLaser, LASER_SPEED, pos);
+}
+
+function blinkAlienLaser(pos) {
+  // if (!gHero.isShoot) return;
+  var nextCell = gBoard[pos.i + 1][pos.j];
+  var currCell = gBoard[pos.i][pos.j];
+  // if (nextCell.gameObject === CANDY) return handleCandy(pos);
+  // if (nextCell.gameObject === ALIEN) return handleAlienHit(pos);
+  if (nextCell.type === WALL || currCell.type === BUNKER) {
+    console.log(`nextCell Hit ${nextCell.type}`);
+    console.log(`CurrCell Hit ${currCell.type}`);
+    updateCell(pos, null);
+    gHero.isShoot = false;
+    clearInterval(gLaserInterval);
+    gLazerPos = null;
+    return;
+  }
+
+  updateCell(pos, null);
+  pos.i++;
+  updateCell(pos, LASER);
+}
+
 function shiftBoardDown(board, fromI, toI) {}
 // runs the interval for moving aliens side to side and down // it re-renders the board every time
 // when the aliens are reaching the hero row - interval stops function moveAliens() {}
