@@ -129,6 +129,8 @@ function addElement(element) {
   // UPDATE THE MODEL & DOM
 
   updateCell(location, getElementHTMLWithGlow(element));
+  gBoard[location.i][location.j].gameObject = element;
+
   return location;
 }
 
