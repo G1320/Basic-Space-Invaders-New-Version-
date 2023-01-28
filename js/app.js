@@ -31,10 +31,10 @@ var gGame = {
 };
 
 function startGame() {
+  init();
   gCandyInterval = setInterval(addCandy, 10000);
   gAlienShootInterval = setInterval(alienShoot, 5000);
   gRandColor = getRandomColor();
-  init();
 }
 // Called when game loads
 function init() {
