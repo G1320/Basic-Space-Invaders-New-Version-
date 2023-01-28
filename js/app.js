@@ -124,10 +124,9 @@ function addCandy() {
 }
 
 function addElement(element) {
-  var location = getEmptyCellPosInRow(1);
+  var location = getEmptyCellLocationInRow(1);
   if (!location) return;
   // UPDATE THE MODEL & DOM
-
   updateCell(location, getElementHTMLWithGlow(element));
   gBoard[location.i][location.j].gameObject = element;
 
@@ -138,7 +137,7 @@ function getElementHTMLWithGlow(element) {
   return `<div style="animation: animation-glow 0.5s ease-in-out infinite alternate; margin: auto; class="" ">${element}</div>`;
 }
 
-function getEmptyCellPosInRow(rowIdx) {
+function getEmptyCellLocationInRow(rowIdx) {
   var positions = [];
   for (var i = 0; i < gBoard[rowIdx].length - 1; i++) {
     var cell = gBoard[rowIdx][i];

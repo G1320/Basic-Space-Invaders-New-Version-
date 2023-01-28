@@ -69,7 +69,7 @@ function shiftBoardLeft(board, fromI = 2, toI = 1) {
 }
 
 function alienShoot() {
-  var pos = getEmptyCellPosInRow(5);
+  var pos = getEmptyCellLocationInRow(5);
   gAlienLaserInterval = setInterval(blinkAlienLaser, LASER_SPEED, pos);
 }
 

@@ -120,5 +120,5 @@ function BlowUpCell(i, j, color) {
 }
 
 function getHeroHTML(deg) {
-  return `<div style=" animation: animation-glow 1.8s ease-in infinite alternate; animation-delay: 0.6s; animation-iteration-count: 2; transform: rotate(${deg}deg); margin: auto; class="" ">${HERO}</div>`;
+  return `<div style=" animation: animation-glow 1.8s ease-in infinite alternate; animation-delay: 0.4s; animation-iteration-count: 2; transform: rotate(${deg}deg); margin: auto; class="" ">${HERO}</div>`;
 }
