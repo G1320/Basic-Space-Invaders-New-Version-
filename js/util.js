@@ -63,6 +63,19 @@ function getClassName(location) {
   var cellClass = 'cell-' + location.i + '-' + location.j;
   return cellClass;
 }
+
+function openModal(msg) {
+  const elModal = document.querySelector('.modal');
+  const elSpan = elModal.querySelector('.msg');
+  elSpan.innerText = msg;
+  elModal.style.display = 'block';
+}
+
+function closeModal() {
+  const elModal = document.querySelector('.modal');
+  elModal.style.display = 'none';
+}
+
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);

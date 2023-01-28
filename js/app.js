@@ -44,6 +44,8 @@ function init() {
   gBoard = createBoard();
   renderBoard(gBoard);
   setInitialGameScore();
+  var msg = 'Welcome!';
+  openModal(msg);
 }
 
 // Create and returns the board with aliens on top, ground at bottom // use the functions: createCell, createHero, createAliens
