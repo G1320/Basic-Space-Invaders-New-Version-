@@ -38,7 +38,7 @@ function shiftBoardRight(board, fromI = 2, toI = 3) {
       if (board[i][j].type === WALL) continue;
       if (board[i][j].gameObject === ALIEN) {
         var temp = board[i][j].gameObject;
-        updateCell({ i, j }, null);
+        updateCell({ i, j });
         board[i][j - 1].gameObject = temp;
         if (scanNegs(i, j - 1, WALL)) {
           clearInterval(gAlienMoveInterval);
@@ -59,7 +59,7 @@ function shiftBoardLeft(board, fromI = 2, toI = 1) {
       if (board[i][j].gameObject === ALIEN) {
         var temp = board[i][j].gameObject;
         // board[i][j].gameObject === null;
-        updateCell({ i, j }, null);
+        updateCell({ i, j });
         board[i][j + 1].gameObject = temp;
         if (scanNegs(i, j + 1, WALL)) {
           clearInterval(gAlienMoveInterval);
@@ -80,11 +80,11 @@ function alienShoot() {
 function blinkAlienLaser(pos) {
   var currCell = gBoard[pos.i][pos.j];
   if (currCell.type === WALL || currCell.type === BUNKER) {
-    updateCell(pos, null);
+    updateCell(pos);
     clearInterval(gAlienLaserInterval);
     return;
   }
-  updateCell(pos, null);
+  updateCell(pos);
   pos.i++;
   updateCell(pos, INVERTED_LASER);
 }

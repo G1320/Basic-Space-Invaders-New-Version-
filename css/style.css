@@ -174,7 +174,7 @@ table {
 }
 
 .sky {
-  background-color: rgb(67, 31, 139);
+  background-color: var(--color-light-primary);
 }
 
 .hit {
@@ -192,11 +192,9 @@ table {
 }
 
 .cell {
-  display: table-cell;
   width: var(--cell-size);
   height: var(--cell-size);
   border-radius: var(--br-s);
-  text-align: center;
   /* text-shadow: var(--shadow-glow-m); */
 }
 

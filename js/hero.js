@@ -41,7 +41,7 @@ function handleKey(event) {
 // Move the hero right (1) or left (-1)
 function moveHero(i, j) {
   if (gBoard[i][j].type === WALL) return;
-  updateCell(gHero.pos, null);
+  updateCell(gHero.pos);
   gHero.pos = { i, j };
   updateCell(gHero.pos, getHeroHTML(gHero.deg));
   setTimeout(() => updateCell(gHero.pos, getHeroHTML(0)), 200);
@@ -56,14 +56,14 @@ function blinkLaser(pos) {
   if (nextCell.type === WALL || currCell.type === BUNKER) {
     // console.log(`nextCell Hit ${nextCell.type}`);
     // console.log(`CurrCell Hit ${currCell.type}`);
-    updateCell(pos, null);
+    updateCell(pos);
     gHero.isShoot = false;
     clearInterval(gLaserInterval);
     gLazerPos = null;
     return;
   }
 
-  updateCell(pos, null);
+  updateCell(pos);
   pos.i--;
   updateCell(pos, LASER);
 }

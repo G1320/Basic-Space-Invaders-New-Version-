@@ -30,6 +30,8 @@ var gGame = {
 };
 // Called when game loads
 function init() {
+  clearInterval(gCandyInterval);
+  clearInterval(gAlienShootInterval);
   gScore = 0;
   gGame.aliensCount = 0;
   gIsFrozen = false;
