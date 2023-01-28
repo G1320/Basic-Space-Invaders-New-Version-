@@ -222,12 +222,12 @@ table {
   top: 100px;
   left: calc(50% - 150px);
   z-index: 200;
-  background-color: black;
-  color: white;
 
   display: flex;
   align-items: space-between;
   flex-direction: column;
+  background-color: black;
+  color: white;
   border: solid 3px grey;
   border-radius: var(--br-m);
   width: 300px;
