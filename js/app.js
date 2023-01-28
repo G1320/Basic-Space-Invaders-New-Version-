@@ -30,9 +30,9 @@ function init() {
   gScore = 0;
   gGame.aliensCount = 0;
   gIsFrozen = false;
-  gCandyInterval = setInterval(() => addCandy(), 10000);
-
+  gCandyInterval = setInterval(addCandy, 10000);
   gRandColor = getRandomColor();
+
   gBoard = createBoard();
   renderBoard(gBoard);
   setInitialGameScore();
@@ -120,7 +120,6 @@ function addElement(element) {
   if (!location) return;
   // UPDATE THE MODEL & DOM
   updateCell(location, element);
-
   return location;
 }
 

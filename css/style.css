@@ -66,6 +66,15 @@
   }
 }
 
+@keyframes move-background {
+  from {
+    -webkit-transform: translate3d(0px, 0px, 0px);
+  }
+  to {
+    -webkit-transform: translate3d(1000px, 0px, 0px);
+  }
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -107,13 +116,43 @@ body {
   animation-iteration-count: 2;
 }
 
+.background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -100;
+}
+
+.background-container > * {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.stars {
+  background: black url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png) repeat;
+  position: absolute;
+  display: block;
+}
+
+.twinkling {
+  width: 10000px;
+  height: 100%;
+  background: transparent url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/twinkling.png')
+    repeat;
+  background-size: 1000px 1000px;
+  position: absolute;
+  top: 120px;
+  animation: move-background 70s linear infinite;
+}
+
 .header {
   width: 100%;
-  display: flex row;
   color: rgb(255, 255, 255);
-  font-size: 1em;
-  border-radius: 8px;
-  box-shadow: 6px px 6px;
+  font-size: 0.8em;
 }
 
 table {
@@ -121,7 +160,6 @@ table {
   display: table;
   table-layout: fixed;
   background-color: var(--color-dark-primary);
-  width: 90%;
   min-width: 500px;
   max-width: 700px;
   padding: 4px;
@@ -181,16 +219,7 @@ table {
   color: white;
 }
 
-.score1 {
-  color: white;
-  background-color: white;
-  width: 68px;
-}
-
 button {
-  background-color: white;
-  color: white;
-  /* font: bold; */
-  /* font-size: 1.5rem; */
   border-radius: 8px;
+  font-size: 0.7rem;
 }

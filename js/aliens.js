@@ -17,6 +17,7 @@ function addAliens(board) {
     }
   }
 }
+
 function handleAlienHit(pos) {
   updateCell(pos, null);
   pos.i--;
@@ -24,9 +25,7 @@ function handleAlienHit(pos) {
   gHero.isShoot = false;
   gGame.aliensCount--;
   clearInterval(gLaserInterval);
-  // if (!gIsNShot) {
   updateScore(10);
-  // }
   gLazerPos = null;
   console.log('Hit Alien');
   if (gGame.aliensCount === 0) {
@@ -40,7 +39,6 @@ function shiftBoardRight(board, fromI = 2, toI = 3) {
       if (board[i][j].type === WALL) continue;
       if (board[i][j].gameObject === ALIEN) {
         var temp = board[i][j].gameObject;
-        // board[i][j].gameObject === null;
         updateCell({ i, j }, null);
         board[i][j - 1].gameObject = temp;
         if (scanNegs(i, j - 1, WALL)) {
@@ -60,10 +58,10 @@ function shiftBoardLeft(board, fromI = 2, toI = 1) {
     for (let j = 0; j < board[0].length - 2; j++) {
       if (board[i][j].type === WALL) continue;
       if (board[i][j].gameObject === ALIEN) {
-        // if (scanNegs(i, j + 1, WALL)) {
-        //   clearInterval(gAlienMoveInterval);
-        //   return;
-        // }
+        if (scanNegs(i, j + 1, WALL)) {
+          clearInterval(gAlienMoveInterval);
+          return;
+        }
         var temp = board[i][j].gameObject;
         // board[i][j].gameObject === null;
         updateCell({ i, j }, null);

@@ -28,7 +28,9 @@ function handleKey(event) {
       shoot();
       break;
     case 'n':
+      console.log('gLazerPos: ', gLazerPos);
       BlowUpNegs(gLazerPos.i, gLazerPos.j);
+      gLazerPos = null;
       break;
   }
   moveHero(i, j);
@@ -46,7 +48,8 @@ function blinkLaser(pos) {
   var nextCell = gBoard[pos.i - 1][pos.j];
   var currCell = gBoard[pos.i][pos.j];
   if (nextCell.type === WALL || currCell.type === BUNKER || nextCell.type === BUNKER) {
-    console.log('Hit Wall');
+    console.log(`nextCell Hit ${nextCell.type}`);
+    console.log(`CurrCell Hit ${currCell.type}`);
     updateCell(pos, null);
     gHero.isShoot = false;
     clearInterval(gLaserInterval);
@@ -67,13 +70,11 @@ function handleCandy(pos) {
   updateCell(pos, null);
 
   gHero.isShoot = false;
-  gGame.aliensCount--;
   clearInterval(gLaserInterval);
   updateScore(50);
   gLazerPos = null;
   console.log('Hit Candy');
 }
-
 // Sets an interval for shutting (blinking) the laser up towards aliens
 function shoot() {
   gHero.isShoot = true;
@@ -98,9 +99,17 @@ function BlowUpNegs(cellI, cellJ) {
 
 function BlowUpCell(i, j, color) {
   document.querySelector(`.${getClassName({ i, j })}`).style.backgroundColor = color;
-  if (gBoard[i][j].gameObject == ALIEN) {
-    gGame.aliensCount--;
-    updateCell({ i, j });
-    updateScore(10);
+  switch (gBoard[i][j].gameObject) {
+    case ALIEN:
+      gGame.aliensCount--;
+      console.log('Hit Alien');
+      updateCell({ i, j });
+      updateScore(10);
+      break;
+    case CANDY:
+      console.log('Hit Candy');
+      updateCell({ i, j });
+      updateScore(50);
+      break;
   }
 }
