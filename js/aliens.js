@@ -90,7 +90,7 @@ function blinkAlienLaser(pos) {
     console.log(`CurrCell Hit ${currCell.type}`);
     updateCell(pos, null);
     gHero.isShoot = false;
-    clearInterval(gLaserInterval);
+    clearInterval(gAlienLaserInterval);
     gLazerPos = null;
     return;
   }
