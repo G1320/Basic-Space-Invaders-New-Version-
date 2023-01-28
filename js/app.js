@@ -134,6 +134,17 @@ function getEmptyCellPosInRow(rowIdx) {
   return positions[getRandomInt(0, positions.length)] || false;
 }
 
+function scanNegs(cellI, cellJ, thing) {
+  for (var i = cellI - 1; i <= cellI + 1; i++) {
+    if (i < 0 || i >= gBoard.length) continue;
+    for (var j = cellJ - 1; j <= cellJ + 1; j++) {
+      if (j < 0 || j >= gBoard[i].length) continue;
+      if (gBoard[i][j].type === thing) return true;
+    }
+  }
+  return false;
+}
+
 function updateCell(pos, gameObject = null) {
   gBoard[pos.i][pos.j].gameObject = gameObject;
   var elCell = getElCell(pos);

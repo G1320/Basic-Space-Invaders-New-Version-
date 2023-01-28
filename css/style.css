@@ -2,6 +2,10 @@
   --ff-primary: 'Press Start 2P', cursive;
   --ff-secondary: 'concert one', cursive;
 
+  --br-s: 6px;
+  --br-m: 8px;
+  --br-l: 10px;
+
   --color-dark-primary: rgb(39, 0, 94);
   --color-dark-secondary: rgba(40, 14, 87, 0.958);
   --color-light-primary: rgb(67, 31, 139);
@@ -36,11 +40,9 @@
   86% {
     transform: rotateZ(0);
   }
-
   91% {
     transform: rotateZ(-11deg);
   }
-
   97% {
     transform: rotateZ(99deg);
   }
@@ -50,13 +52,12 @@
   99% {
     transform: rotateZ(91deg);
   }
-
   100% {
     transform: rotateZ(90deg);
   }
 }
 
-@keyframes td-selected-rotateY {
+@keyframes td-rotateY {
   from {
     transform: rotateY(0deg);
   }
@@ -79,10 +80,7 @@ body {
   padding: 0;
   margin: 0;
   background-color: black;
-  width: 100%;
-  height: 100%;
   font-family: var(--ff-primary);
-  letter-spacing: 0.02em;
   font-weight: 400;
   text-align: center;
 }
@@ -110,7 +108,7 @@ body {
 
 .animation-spin {
   transform-style: preserve-3d;
-  animation: td-selected-rotateY 2s infinite ease-in-out alternate;
+  animation: td-rotateY 2s infinite ease-in-out alternate;
   animation-delay: 0.8s;
   animation-play-state: running;
   animation-iteration-count: 2;
@@ -153,6 +151,13 @@ body {
   width: 100%;
   color: rgb(255, 255, 255);
   font-size: 0.8em;
+  letter-spacing: 0.2em;
+  margin-top: 50px;
+  margin-bottom: 25px;
+}
+
+.header * {
+  margin-top: 20px;
 }
 
 table {
@@ -163,50 +168,34 @@ table {
   min-width: 500px;
   max-width: 700px;
   padding: 4px;
-  border-radius: 6px;
   border: 3px white;
+  border-radius: var(--br-s);
   border-style: groove;
-  box-shadow: 6px 6px 6px black;
-  text-align: center;
 }
 
 .sky {
   background-color: rgb(67, 31, 139);
-  border-radius: 6px;
 }
 
 .hit {
   background-color: var(--color-selected) !important;
-  border-radius: 6px;
 }
 
 .wall {
   background-color: rgba(211, 211, 211, 0.439);
   border: 2px solid rgba(255, 255, 255, 0.509);
-  border-radius: 6px;
   animation: td-rotateZ 13s ease-in-out infinite;
 }
 .bunker {
   border: 2px solid rgba(255, 255, 255, 0.509);
-  border-radius: 6px;
   animation: td-rotateZ 13s ease-in-out infinite;
-}
-
-.target {
-  background-color: var(--color-selected);
-  border-radius: 6px;
 }
 
 .cell {
   display: table-cell;
   width: 30px;
   height: 30px;
-  text-align: center;
-}
-
-.cell img {
-  width: 25px;
-  height: 25px;
+  border-radius: var(--br-s);
 }
 
 .cell * {
@@ -220,6 +209,6 @@ table {
 }
 
 button {
-  border-radius: 8px;
+  border-radius: var(--br-s);
   font-size: 0.7rem;
 }
