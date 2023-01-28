@@ -5,6 +5,7 @@ var gLaserInterval;
 var gHero = {
   pos: { i: 12, j: 6 },
   isShoot: false,
+  deg: null,
 };
 // creates the hero and place it on board
 function createHero(board) {
@@ -17,21 +18,23 @@ function handleKey(event) {
 
   switch (event.key) {
     case 'ArrowLeft':
+      gHero.deg = -90;
       j--;
       break;
     case 'ArrowRight':
+      gHero.deg = 90;
       j++;
       break;
     case ' ':
       if (gHero.isShoot) return;
       clearInterval(gLaserInterval);
       shoot();
-      break;
+      return;
     case 'n':
       console.log('gLazerPos: ', gLazerPos);
       BlowUpNegs(gLazerPos.i, gLazerPos.j);
       gLazerPos = null;
-      break;
+      return;
   }
   moveHero(i, j);
 }
@@ -40,7 +43,8 @@ function moveHero(i, j) {
   if (gBoard[i][j].type === WALL) return;
   updateCell(gHero.pos, null);
   gHero.pos = { i, j };
-  updateCell(gHero.pos, HERO);
+  updateCell(gHero.pos, getHeroHTML(gHero.deg));
+  setTimeout(() => updateCell(gHero.pos, getHeroHTML(0)), 200);
 }
 // renders a LASER at specific cell for short time and removes it
 function blinkLaser(pos) {
@@ -65,9 +69,7 @@ function blinkLaser(pos) {
 }
 
 function handleCandy(pos) {
-  updateCell(pos, null);
-  pos.i--;
-  updateCell(pos, null);
+  cleanCell(pos);
 
   gHero.isShoot = false;
   gLazerPos = null;
@@ -112,4 +114,8 @@ function BlowUpCell(i, j, color) {
       updateScore(50);
       break;
   }
+}
+
+function getHeroHTML(deg) {
+  return `<div style="transform: rotate(${deg}deg); margin: auto; class="" ">${HERO}</div>`;
 }

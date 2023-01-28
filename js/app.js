@@ -135,7 +135,7 @@ function getEmptyCellPosInRow(rowIdx) {
       positions.push({ i: rowIdx, j: i });
     }
   }
-  return positions[getRandomInt(0, positions.length)] || false;
+  return positions[getRandomInt(0, positions.length)] || null;
 }
 
 function scanNegs(cellI, cellJ, thing) {

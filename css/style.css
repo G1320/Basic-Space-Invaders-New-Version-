@@ -196,6 +196,7 @@ table {
   width: var(--cell-size);
   height: var(--cell-size);
   border-radius: var(--br-s);
+  text-align: center;
   /* text-shadow: var(--shadow-glow-m); */
 }
 

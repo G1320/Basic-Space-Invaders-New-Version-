@@ -19,9 +19,8 @@ function addAliens(board) {
 }
 
 function handleAlienHit(pos) {
-  updateCell(pos, null);
-  pos.i--;
-  updateCell(pos, null);
+  cleanCell(pos);
+
   gHero.isShoot = false;
   gGame.aliensCount--;
   clearInterval(gLaserInterval);

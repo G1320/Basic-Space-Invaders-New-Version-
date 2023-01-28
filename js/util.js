@@ -1,18 +1,4 @@
-// Returns a new cell object. e.g.: {type: SKY, gameObject: ALIEN}
-function createCell(gameObject = null) {
-  return {
-    type: SKY,
-    gameObject: gameObject,
-  };
-}
-// function getElCell(pos) {
-//   return document.querySelector(`[data-i='${pos.i}'][data-j='${pos.j}']`);
-// }
-
-function getElCell(pos) {
-  var cellSelector = '.' + getClassName(pos);
-  return document.querySelector(cellSelector);
-}
+'use strict';
 function createMat(ROWS, COLS) {
   var mat = [];
   for (var i = 0; i < ROWS; i++) {
@@ -23,6 +9,28 @@ function createMat(ROWS, COLS) {
     mat.push(row);
   }
   return mat;
+}
+
+function createCell(gameObject = null) {
+  return {
+    type: SKY,
+    gameObject: gameObject,
+  };
+}
+// Returns a new cell object. e.g.: {type: SKY, gameObject: ALIEN}
+// function getElCell(pos) {
+//   return document.querySelector(`[data-i='${pos.i}'][data-j='${pos.j}']`);
+// }
+
+function getElCell(pos) {
+  var cellSelector = '.' + getClassName(pos);
+  return document.querySelector(cellSelector);
+}
+
+function cleanCell(pos) {
+  updateCell(pos, null);
+  pos.i--;
+  updateCell(pos, null);
 }
 
 // function getEmptyCell() {
