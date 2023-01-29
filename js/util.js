@@ -28,9 +28,9 @@ function getElCell(pos) {
 }
 
 function cleanCell(pos) {
-  updateCell(pos, null);
+  updateCell(pos);
   pos.i--;
-  updateCell(pos, null);
+  updateCell(pos);
 }
 
 // function getEmptyCell() {

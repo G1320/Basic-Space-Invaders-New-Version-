@@ -224,7 +224,6 @@ table {
   z-index: 200;
 
   display: flex;
-  align-items: space-between;
   flex-direction: column;
   background-color: black;
   color: white;

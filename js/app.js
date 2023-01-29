@@ -34,7 +34,6 @@ function startGame() {
   init();
   gCandyInterval = setInterval(addCandy, 10000);
   gAlienShootInterval = setInterval(alienShoot, 5000);
-  gRandColor = getRandomColor();
 }
 // Called when game loads
 function init() {
@@ -42,6 +41,7 @@ function init() {
   clearInterval(gAlienShootInterval);
   clearInterval(gAlienMoveInterval);
 
+  gRandColor = getRandomColor();
   gScore = 0;
   gGame.aliensCount = 0;
   gIsFrozen = false;
