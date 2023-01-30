@@ -47,9 +47,14 @@ function moveHero(i, j) {
   gHero.pos = { i, j };
   updateCell(gHero.pos, getHeroHTML(gHero.deg));
   gBoard[i][j].gameObject = HERO;
-  setTimeout(() => updateCell(gHero.pos, getHeroHTML(0)), 200);
+  setTimeout(() => updateCell(gHero.pos, getHeroHTML()), 200);
   gBoard[i][j].gameObject = HERO;
 }
+
+function getHeroHTML(deg = 0) {
+  return `<div style=" animation: animation-glow 1.8s ease-in infinite alternate; animation-delay: 0.4s; animation-iteration-count: 2; transform: rotate(${deg}deg); margin: auto; class="" ">${HERO}</div>`;
+}
+
 // renders a LASER at specific cell for short time and removes it
 function blinkLaser(pos) {
   if (!gHero.isShoot) return;
@@ -117,8 +122,4 @@ function BlowUpCell(i, j, color) {
       updateScore(50);
       break;
   }
-}
-
-function getHeroHTML(deg) {
-  return `<div style=" animation: animation-glow 1.8s ease-in infinite alternate; animation-delay: 0.4s; animation-iteration-count: 2; transform: rotate(${deg}deg); margin: auto; class="" ">${HERO}</div>`;
 }

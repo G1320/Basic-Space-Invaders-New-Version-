@@ -44,8 +44,8 @@ function shiftBoardRight(board, fromI = 2, toI = 3) {
       }
     }
   }
-  // console.log(board);
   renderBoard(board);
+  // console.log(board);
 }
 
 function shiftBoardLeft(board, fromI = 2, toI = 1) {
@@ -69,7 +69,7 @@ function shiftBoardLeft(board, fromI = 2, toI = 1) {
 }
 
 function alienShoot() {
-  var pos = getEmptyCellLocationInRow(5);
+  var pos = getEmptyCellPosInRow(5);
   gAlienLaserInterval = setInterval(blinkAlienLaser, LASER_SPEED, pos);
 }
 
