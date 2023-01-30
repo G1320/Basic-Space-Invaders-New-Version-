@@ -33,7 +33,7 @@ var gGame = {
 function startGame() {
   init();
   gCandyInterval = setInterval(addCandy, 10000);
-  gAlienShootInterval = setInterval(alienShoot, 5000);
+  gAlienShootInterval = setInterval(alienShoot, 4800);
 }
 // Called when game loads
 function init() {
@@ -177,9 +177,9 @@ function updateCell(pos, gameObject = null) {
   var elCell = getElCell(pos);
   elCell.innerHTML = gameObject || '';
 
-  if (gBoard[pos.i][pos.j].type === SKY && pos.i + pos.j !== gHero.pos.i + gHero.pos.j) {
-    elCell.classList.add('hit');
-    setTimeout(() => elCell.classList.remove('hit'), 100);
+  if (gLazerPos === pos) {
+    elCell.classList.add('laser-bg');
+    setTimeout(() => elCell.classList.remove('laser-bg'), 100);
   }
 
   if (gBoard[pos.i][pos.j].type === BUNKER) {
