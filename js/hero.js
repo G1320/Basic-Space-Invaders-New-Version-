@@ -115,6 +115,7 @@ function BlowUpCell(i, j, color) {
   setTimeout(() => {
     ellCell.style.transition = '0.8s';
     ellCell.style.backgroundColor = 'var(--color-light-primary)';
+    setTimeout(() => (ellCell.style.transition = '0.05s'), 800);
   }, 2000);
   switch (gBoard[i][j].gameObject) {
     case ALIEN:

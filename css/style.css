@@ -190,8 +190,8 @@ table {
   background-color: var(--color-selected) !important;
 }
 .laser-bg {
-  transition: 0.05s;
-  background-color: var(--color-selected);
+  transition: 0.05s !important;
+  background-color: var(--color-selected) !important;
 }
 
 .wall {
