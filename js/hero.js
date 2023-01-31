@@ -108,7 +108,14 @@ function BlowUpNegs(cellI, cellJ) {
 }
 
 function BlowUpCell(i, j, color) {
-  document.querySelector(`.${getClassName({ i, j })}`).style.backgroundColor = color;
+  var ellCell = document.querySelector(`.${getClassName({ i, j })}`);
+  ellCell.style.backgroundColor = gRandColor;
+  ellCell.style.transition = '0.05s';
+
+  setTimeout(() => {
+    ellCell.style.transition = '0.8s';
+    ellCell.style.backgroundColor = 'var(--color-light-primary)';
+  }, 2000);
   switch (gBoard[i][j].gameObject) {
     case ALIEN:
       gGame.aliensCount--;

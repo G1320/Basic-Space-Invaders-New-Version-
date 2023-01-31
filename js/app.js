@@ -50,7 +50,7 @@ function init() {
   renderBoard(gBoard);
   setInitialGameScore();
   var msg = 'Welcome!';
-  if (isModalOpen) {
+  if (!isModalOpen) {
     openModal(msg);
     isModalOpen = false;
   }
