@@ -22,7 +22,7 @@ var gRandColor;
 var gCandyInterval;
 var gAlienLaserInterval;
 var gAlienShootInterval;
-var isModalOpen = false;
+var isModalOpen = true;
 
 var gBoard;
 var gGame = {
@@ -50,7 +50,7 @@ function init() {
   renderBoard(gBoard);
   setInitialGameScore();
   var msg = 'Welcome!';
-  if (!isModalOpen) {
+  if (isModalOpen) {
     openModal(msg);
     isModalOpen = false;
   }
@@ -103,7 +103,7 @@ function renderBoard(board) {
           cellClass += ' hit';
           break;
       }
-      strHTML += `\t<td ${styleStr} class="cell ${cellClass}" onclick="handleMove(${i}, ${j})">`;
+      strHTML += `\t<td ${styleStr} class="cell ${cellClass}">`;
       switch (currCell.gameObject) {
         case HERO:
           strHTML += HERO;
@@ -144,7 +144,7 @@ function addElement(element) {
 }
 
 function getElementHTMLWithGlow(element) {
-  return `<div style="animation: animation-glow 0.5s ease-in-out infinite alternate; margin: auto; class="" ">${element}</div>`;
+  return `<div style="animation: animation-glow 0.5s ease-in-out infinite alternate; margin: auto;>${element}</div>`;
 }
 
 function getEmptyCellPosInRow(rowIdx) {
@@ -170,9 +170,8 @@ function scanNegs(cellI, cellJ, thing) {
 }
 
 function updateCell(pos, gameObject = null) {
-  if (gGame.aliensCount === 0) {
-    console.log('You win!');
-  }
+  if (gLazerPos === null && gGame.aliensCount === 0) openModal('You Win!');
+
   gBoard[pos.i][pos.j].gameObject = gameObject;
   var elCell = getElCell(pos);
   elCell.innerHTML = gameObject || '';

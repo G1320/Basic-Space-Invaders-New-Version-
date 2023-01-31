@@ -77,10 +77,10 @@ function blinkLaser(pos) {
 }
 
 function handleCandy(pos) {
-  cleanCell(pos);
-
   gHero.isShoot = false;
   gLazerPos = null;
+
+  cleanCell(pos);
   clearInterval(gLaserInterval);
   updateScore(50);
   console.log('Hit Candy');
@@ -113,13 +113,12 @@ function BlowUpCell(i, j, color) {
     case ALIEN:
       gGame.aliensCount--;
       console.log('Hit Alien');
-      updateCell({ i, j });
       updateScore(10);
       break;
     case CANDY:
       console.log('Hit Candy');
-      updateCell({ i, j });
       updateScore(50);
       break;
   }
+  updateCell({ i, j });
 }
